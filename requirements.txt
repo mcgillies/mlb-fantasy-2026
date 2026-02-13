@@ -1,0 +1,17 @@
+pybaseball
+pandas
+numpy
+scikit-learn
+xgboost
+lightgbm
+shap
+matplotlib
+seaborn
+streamlit
+jupyter
+jupyter-book
+unidecode
+rapidfuzz
+statsmodels
+tqdm
+joblib
