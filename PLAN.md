@@ -85,26 +85,30 @@ Predict 2026 fantasy baseball points using advanced metrics from Baseball Savant
 ---
 
 ## Phase 3: Model Training
-**Status: Not started**
+**Status: In progress (notebooks ready for user to run)**
 
 ### 3.1 Batter model
-- [ ] Target: Fpoints_PA (skill-based fantasy points per plate appearance)
-- [ ] Train XGBoost, LightGBM, Random Forest, Gradient Boosting
-- [ ] Hyperparameter tuning (grid search or Bayesian)
-- [ ] Cross-validation with time-aware splits
-- [ ] Backtest: train on years < N, predict year N (using N-1 metrics)
-- [ ] Select best model
+- [x] Target: Fpoints_PA (skill-based fantasy points per plate appearance)
+- [x] Train XGBoost, LightGBM, Random Forest, Ridge (notebooks/03_batter_model.ipynb)
+- [x] Hyperparameter tuning (GridSearchCV)
+- [x] Cross-validation with 5-fold CV
+- [x] Train/val split: 2016-2023 train, 2024-2025 validation
+- [x] predict_player() function with SHAP waterfall
+- [x] predict_season() and show_season_summary() for evaluation
+- [ ] Run notebook and evaluate results
 
 ### 3.2 Pitcher model
-- [ ] Target: Fpoints_IP (skill-based, excludes W/L/Hold/Save)
-- [ ] Same model comparison as batters
-- [ ] Consider whether SP/RP need separate models or a combined model with role indicator
-- [ ] Do NOT use W/L/S/Hold as features — these are outcomes, not predictors
+- [x] Target: Fpoints_IP (skill-based, excludes W/L/Hold/Save)
+- [x] Same model comparison as batters (notebooks/04_pitcher_model.ipynb)
+- [x] Combined SP/RP model with role indicator (SP_pct feature)
+- [x] SP vs RP performance comparison included
+- [x] predict_player() shows team-based points breakdown
+- [ ] Run notebook and evaluate results
 
 ### 3.3 Model evaluation
-- [ ] MAE, RMSE, R² on holdout data
-- [ ] Year-by-year backtest results (train < N, test = N, features from N-1)
-- [ ] Feature importance analysis (built-in + SHAP)
+- [x] MAE, RMSE, R² on holdout data (built into notebooks)
+- [x] Rank correlation between predicted and actual
+- [x] Feature importance analysis (built-in + SHAP)
 - [ ] Residual analysis — are errors systematic for any player type?
 
 ---
