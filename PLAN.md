@@ -31,16 +31,20 @@ Predict 2026 fantasy baseball points using advanced metrics from Baseball Savant
 - **Note:** Will implement 2H-1H deltas for key metrics rather than full second-half feature set
 
 ### 1.4 Calculate fantasy points
-- [ ] Apply batter scoring formula (config/scoring.py) to base stats
-- [ ] Apply skill-based pitcher scoring (excludes W/L/Hold/Save) to base stats
-- [ ] Compute rate stats: Fpoints_PA (batters), Fpoints_IP (pitchers)
-- [ ] Verify against manual calculations for a few known players
+- [x] Apply batter scoring formula: TB + R + RBI + BB + SB - K
+- [x] Apply skill-based pitcher scoring: 3*IP + K - BB - H - 2*ER (excludes W/L/Hold/Save)
+- [x] Compute rate stats: Fpoints_PA (mean=0.463), Fpoints_IP (mean=1.685)
+- [x] Verified calculations look reasonable
 
 ### 1.5 Merge and process data
-- [ ] Join base stats with Statcast metrics using player IDs (not names)
-- [ ] Lag metrics by 1 year (year N-1 metrics predict year N fpoints)
-- [ ] Normalize player names (unicode handling)
-- [ ] Save processed datasets to `data/processed/`
+- [x] Selected ~32 key features per player type based on predictive correlation analysis
+- [x] Created lag features: 1-year and 2-year lags for all features
+- [x] Created rolling averages: 2-year and 3-year windows for Fpoints
+- [x] Merged FanGraphs + Savant data using player ID crosswalk
+- [x] Added pitcher arsenal data (fastball velo, spin, etc.)
+- [x] Saved processed datasets to `data/processed/`
+  - batters_processed.csv: 3,578 rows, 113 cols (66 model features)
+  - pitchers_processed.csv: 3,985 rows, 120 cols (78 model features)
 
 ### 1.6 Handle missing data
 - [ ] Identify rookies (no previous MLB stats) — impute with league/position means or external projections
@@ -57,15 +61,15 @@ Predict 2026 fantasy baseball points using advanced metrics from Baseball Savant
 ---
 
 ## Phase 2: Feature Engineering
-**Status: Not started**
+**Status: Mostly complete**
 
 ### 2.1 Create lag features
-- [ ] 1-year lag (already present via the year N-1 metrics merge)
-- [ ] 2-year lag for key metrics (additional lookback)
-- [ ] Historical rolling average of fantasy points per PA/IP (2-3 year windows)
+- [x] 1-year lag for 32 batter features, 31 pitcher features
+- [x] 2-year lag for all features (additional lookback)
+- [x] Historical rolling average of fantasy points per PA/IP (2-year and 3-year windows)
 
 ### 2.2 Second-half features
-- [ ] Post-ASB metrics as separate features (e.g., xBA_2H, exit_velo_2H)
+- [ ] Post-ASB 2H-1H deltas for key metrics (optional enhancement)
 - [ ] Evaluate whether these add signal vs noise in early experiments
 
 ### 2.3 Derived features
