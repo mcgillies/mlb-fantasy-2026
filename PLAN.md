@@ -6,27 +6,29 @@ Predict 2026 fantasy baseball points using advanced metrics from Baseball Savant
 ---
 
 ## Phase 1: Data Collection & Processing
-**Status: Not started**
+**Status: In progress**
 
 ### 1.1 Collect historical base stats (2015-2025)
-- [ ] Use `pybaseball.batting_stats()` to pull FanGraphs batting data
-- [ ] Use `pybaseball.pitching_stats()` to pull FanGraphs pitching data
-- [ ] Verify columns include: PA, G, TB, R, RBI, BB, SB, K (batters) and IP, K, BB, H, ER (pitchers)
-- [ ] Save raw data to `data/raw/`
+- [x] Use `pybaseball.batting_stats()` to pull FanGraphs batting data (4,836 player-seasons, 320 cols)
+- [x] Use `pybaseball.pitching_stats()` to pull FanGraphs pitching data (5,696 player-seasons, 393 cols)
+- [x] Verify columns include: PA, G, TB, R, RBI, BB, SB, K (batters) and IP, K, BB, H, ER (pitchers)
+- [x] Save raw data to `data/raw/`
 
 ### 1.2 Collect Statcast advanced metrics (2015-2025)
-- [ ] Batter expected stats: xBA, xSLG, xwOBA, barrel%, hard_hit%, exit_velo, launch_angle
-- [ ] Batter swing metrics: swing_speed, whiff%, chase%, contact%, zone_swing%
-- [ ] Pitcher expected stats: xBA, xSLG, xwOBA, xERA
-- [ ] Pitcher pitch characteristics: fastball velo, spin rate, break, usage rates
-- [ ] Pitcher plate discipline induced: whiff%, chase%, K%, BB%, K-BB%
-- [ ] Investigate what pybaseball functions provide the best coverage
-- [ ] Handle year-over-year schema changes in Statcast data
+- [x] Batter expected stats: xBA, xSLG, xwOBA, barrel%, hard_hit%, exit_velo, launch_angle (included in FG data + savant_batter_expected.csv)
+- [x] Batter swing metrics: whiff%, chase%, contact%, zone_swing% (included in FanGraphs data)
+- [x] Pitcher expected stats: xBA, xSLG, xwOBA, xERA (included in FG data + savant_pitcher_expected.csv)
+- [x] Pitcher pitch characteristics: fastball velo, spin rate, usage rates (savant_pitcher_arsenal.csv - 6,294 rows)
+- [x] Pitcher plate discipline induced: whiff%, K%, BB%, K-BB% (included in FG data + savant_pitcher_arsenal_stats.csv)
+- [x] Investigate what pybaseball functions provide the best coverage
+- [x] Handle year-over-year schema changes in Statcast data
+- [x] Collect player ID mapping (chadwick_register - 25,901 players) for FanGraphs<->Savant joins
 
 ### 1.3 Collect second-half splits (2015-2025)
 - [ ] Pull post-All-Star-Break stats/metrics for batters and pitchers
 - [ ] Use as additional features to capture late-season trends and breakouts
 - [ ] Determine best pybaseball approach (date-filtered statcast or FanGraphs splits)
+- **Note:** Will implement 2H-1H deltas for key metrics rather than full second-half feature set
 
 ### 1.4 Calculate fantasy points
 - [ ] Apply batter scoring formula (config/scoring.py) to base stats
