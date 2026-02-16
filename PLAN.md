@@ -47,6 +47,9 @@ Predict 2026 fantasy baseball points using advanced metrics from Baseball Savant
   - pitchers_processed.csv: 3,985 rows, 120 cols (78 model features)
 
 ### 1.6 Handle missing data
+- [ ] **Improve imputation beyond median** — current approach fills NaN with training median, which is naive
+  - Consider: KNN imputation, position-specific means, age-based imputation
+  - For pitch-level features: impute based on pitcher's other pitches or league averages for pitch type
 - [ ] Identify rookies (no previous MLB stats) — impute with league/position means or external projections
 - [ ] Identify injured players (low PA/IP in previous year) — use most recent healthy season or weighted average
 - [ ] Add data quality flags (is_rookie, is_injured_season, small_sample)
