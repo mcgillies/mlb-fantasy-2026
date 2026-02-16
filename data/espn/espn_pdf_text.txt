@@ -1,0 +1,1135 @@
+Player
+Team All pos.
+$
+Player
+Team All pos.
+$
+Player
+Team All pos.
+$
+Player
+Team All pos.
+$
+1. Shohei Ohtani
+LAD
+DH/SP
+$101 76. Ryan Pepiot
+TB
+SP
+$11 151. Jordan Westburg
+BAL
+3B
+$1
+226. Jake Cronenworth
+SD
+2B
+$0
+2. Aaron Judge
+NYY
+OF/DH
+$79 77. Nathan Eovaldi
+TEX
+SP
+$10 152. Nolan McLean
+NYM
+SP
+$1
+227. Marcell Ozuna
+FA
+DH
+$0
+3. Paul Skenes
+PIT
+SP
+$77 78. Roman Anthony
+BOS
+OF
+$10 153. Bryan Reynolds
+PIT
+OF/DH
+$1
+228. Kerry Carpenter
+DET
+OF/DH
+$0
+4. Juan Soto
+NYM
+OF
+$72 79. Wyatt Langford
+TEX
+OF
+$10 154. MacKenzie Gore
+TEX
+SP
+$1
+229. Ryan O'Hearn
+PIT
+1B/OF/DH
+$0
+5. Tarik Skubal
+DET
+SP
+$68 80. Christian Yelich
+MIL
+DH
+$10 155. Matthew Boyd
+CHC
+SP
+$1
+230. Colt Keith
+DET
+2B/3B/DH
+$0
+6. Jose Ramirez
+CLE
+3B/DH
+$67 81. Pete Alonso
+BAL
+1B
+$10 156. Michael Harris II
+ATL
+OF
+$1
+231. Luke Weaver
+NYM
+RP
+$0
+7. Garrett Crochet
+BOS
+SP
+$57 82. Nick Kurtz
+ATH
+1B
+$10 157. Brandon Lowe
+PIT
+2B
+$1
+232. Wilyer Abreu
+BOS
+OF
+$0
+8. Bobby Witt Jr.
+KC
+SS
+$48 83. Ozzie Albies
+ATL
+2B
+$9
+158. Abner Uribe
+MIL
+RP
+$1
+233. Xander Bogaerts
+SD
+SS
+$0
+9. Kyle Tucker
+LAD
+OF
+$46 84. Shea Langeliers
+ATH
+C
+$9
+159. Oneil Cruz
+PIT
+OF
+$1
+234. Matt Brash
+SEA
+RP
+$0
+10. Yoshinobu Yamamoto
+LAD
+SP
+$45 85. Spencer Strider
+ATL
+SP
+$9
+160. Hunter Goodman
+COL
+C/DH
+$1
+235. Jose Soriano
+LAA
+SP
+$0
+11. Corbin Carroll
+ARI
+OF
+$43 86. Brandon Woodruff
+MIL
+SP
+$9
+161. Robbie Ray
+SF
+SP
+$1
+236. Reid Detmers
+LAA
+RP
+$0
+12. Cal Raleigh
+SEA
+C/DH
+$40 87. Seiya Suzuki
+CHC
+OF/DH
+$9
+162. Luis Garcia Jr.
+WSH
+2B
+$1
+237. Tanner Scott
+LAD
+RP
+$0
+13. Ketel Marte
+ARI
+2B/DH
+$39 88. Brice Turang
+MIL
+2B
+$9
+163. Drew Rasmussen
+TB
+SP
+$1
+238. Anthony Santander
+TOR
+OF/DH
+$0
+14. Logan Gilbert
+SEA
+SP
+$39 89. Bryce Harper
+PHI
+1B
+$9
+164. Jacob Wilson
+ATH
+SS
+$1
+239. Kodai Senga
+NYM
+SP
+$0
+15. Logan Webb
+SF
+SP
+$38 90. Carlos Estevez
+KC
+RP
+$8
+165. Sandy Alcantara
+MIA
+SP
+$1
+240. Nolan Arenado
+ARI
+3B
+$0
+16. Bryan Woo
+SEA
+SP
+$36 91. Brandon Nimmo
+TEX
+OF
+$8
+166. Caleb Durbin
+MIL
+3B
+$1
+241. Riley O'Brien
+STL
+RP
+$0
+17. Fernando Tatis Jr.
+SD
+OF
+$36 92. Rafael Devers
+SF
+1B/DH
+$8
+167. Brendan Donovan
+SEA
+2B
+$1
+242. Lawrence Butler
+ATH
+OF
+$0
+18. Kyle Schwarber
+PHI
+DH
+$36 93. Luis Castillo
+SEA
+SP
+$8
+168. Alec Burleson
+STL
+OF/1B/DH
+$1
+243. Jordan Leasure
+CWS
+RP
+$0
+19. Cristopher Sanchez
+PHI
+SP
+$35 94. Trea Turner
+PHI
+SS
+$8
+169. Andrew Abbott
+CIN
+SP
+$1
+244. Jack Leiter
+TEX
+SP
+$0
+20. Junior Caminero
+TB
+3B
+$35 95. Trevor Megill
+MIL
+RP
+$8
+170. Ryan Walker
+SF
+RP
+$1
+245. Luis Robert Jr.
+NYM
+OF
+$0
+21. Francisco Lindor
+NYM
+SS
+$34 96. Will Smith
+LAD
+C
+$7
+171. Shota Imanaga
+CHC
+SP
+$1
+246. Ryne Nelson
+ARI
+SP/RP
+$0
+22. Max Fried
+NYY
+SP
+$33 97. Freddie Freeman
+LAD
+1B
+$7
+172. Edwin Uceta
+TB
+RP
+$1
+247. Christian Walker
+HOU
+1B
+$0
+23. Julio Rodriguez
+SEA
+OF
+$33 98. James Wood
+WSH
+OF/DH
+$7
+173. Trevor Rogers
+BAL
+SP
+$1
+248. Adolis Garcia
+PHI
+OF
+$0
+24. Hunter Brown
+HOU
+SP
+$32 99. Chase Burns
+CIN
+SP
+$7
+174. Merrill Kelly
+ARI
+SP
+$1
+249. Casey Mize
+DET
+SP
+$0
+25. Manny Machado
+SD
+3B
+$32 100. Randy Arozarena
+SEA
+OF
+$7
+175. Royce Lewis
+MIN
+3B
+$1
+250. Adrian Morejon
+SD
+RP
+$0
+26. Freddy Peralta
+NYM
+SP
+$31 101. Drake Baldwin
+ATL
+C
+$6
+176. Jakob Marsee
+MIA
+OF
+$1
+251. Mitch Keller
+PIT
+SP
+$0
+27. Gunnar Henderson
+BAL
+SS
+$30 102. Josh Naylor
+SEA
+1B/DH
+$6
+177. Jo Adell
+LAA
+OF
+$1
+252. JoJo Romero
+STL
+RP
+$0
+28. Chris Sale
+ATL
+SP
+$30 103. Maikel Garcia
+KC
+3B
+$6
+178. Ceddanne Rafaela
+BOS
+OF/2B
+$1
+253. Gabriel Moreno
+ARI
+C
+$0
+29. Vladimir Guerrero Jr.
+TOR
+1B/DH
+$29 104. Tyler Glasnow
+LAD
+SP
+$6
+179. Alec Bohm
+PHI
+3B
+$1
+254. Garrett Cleavinger
+TB
+RP
+$0
+30. Alex Bregman
+CHC
+3B
+$29 105. Pete Fairbanks
+MIA
+RP
+$6
+180. Aaron Nola
+PHI
+SP
+$1
+255. Munetaka Murakami
+CWS
+3B
+$0
+31. Hunter Greene
+CIN
+SP
+$28 106. Taylor Ward
+BAL
+OF
+$6
+181. Xavier Edwards
+MIA
+2B/SS
+$1
+256. Samuel Basallo
+BAL
+C
+$0
+32. Ronald Acuna Jr.
+ATL
+OF
+$28 107. Gleyber Torres
+DET
+2B
+$6
+182. Shane Baz
+BAL
+SP
+$1
+257. Mike Trout
+LAA
+OF/DH
+$0
+33. Mason Miller
+SD
+RP
+$27 108. Matt Chapman
+SF
+3B
+$5
+183. CJ Abrams
+WSH
+SS
+$1
+258. Spencer Torkelson
+DET
+1B
+$0
+34. Joe Ryan
+MIN
+SP
+$27 109. Riley Greene
+DET
+OF/DH
+$5
+184. Trey Yesavage
+TOR
+SP
+$1
+259. Matt McLain
+CIN
+2B
+$0
+35. Edwin Diaz
+LAD
+RP
+$26 110. Pablo Lopez
+MIN
+SP
+$5
+185. Robert Suarez
+ATL
+RP
+$1
+260. Cody Ponce
+TOR
+SP
+$0
+36. Andres Munoz
+SEA
+RP
+$26 111. Ian Happ
+CHC
+OF
+$5
+186. Max Muncy
+LAD
+3B
+$1
+261. Camilo Doval
+NYY
+RP
+$0
+37. William Contreras
+MIL
+C/DH
+$25 112. Adley Rutschman
+BAL
+C
+$5
+187. Tatsuya Imai
+HOU
+SP
+$1
+262. Ivan Herrera
+STL
+DH
+$0
+38. Framber Valdez
+DET
+SP
+$24 113. Emilio Pagan
+CIN
+RP
+$5
+188. Zach Neto
+LAA
+SS
+$1
+263. Heliot Ramos
+SF
+OF
+$0
+39. Yordan Alvarez
+HOU
+OF/DH
+$24 114. Eury Perez
+MIA
+SP
+$5
+189. Kris Bubic
+KC
+SP
+$1
+264. Shane Smith
+CWS
+SP
+$0
+40. Cade Smith
+CLE
+RP
+$24 115. Corey Seager
+TEX
+SS
+$5
+190. Kazuma Okamoto
+TOR
+3B
+$1
+265. Steven Matz
+TB
+RP
+$0
+41. Cole Ragans
+KC
+SP
+$23 116. Jurickson Profar
+ATL
+OF
+$4
+191. Sal Frelick
+MIL
+OF
+$0
+266. Reese Olson
+DET
+SP
+$0
+42. Jacob deGrom
+TEX
+SP
+$22 117. Jeff Hoffman
+TOR
+RP
+$4
+192. Cade Horton
+CHC
+SP
+$0
+267. Chris Bassitt
+FA
+SP
+$0
+43. Brent Rooker
+ATH
+OF/DH
+$22 118. Salvador Perez
+KC
+C/1B/DH
+$4
+193. Edward Cabrera
+CHC
+SP
+$0
+268. Brayan Bello
+BOS
+SP
+$0
+44. Josh Hader
+HOU
+RP
+$21 119. Eugenio Suarez
+CIN
+3B
+$4
+194. Jorge Polanco
+NYM
+2B/DH
+$0
+269. Sean Manaea
+NYM
+SP
+$0
+45. Jesus Luzardo
+PHI
+SP
+$21 120. Vinnie Pasquantino
+KC
+1B/DH
+$4
+195. Jung Hoo Lee
+SF
+OF
+$0
+270. Trent Grisham
+NYY
+OF
+$0
+46. Jhoan Duran
+PHI
+RP
+$21 121. Ryan Helsley
+BAL
+RP
+$4
+196. Dennis Santana
+PIT
+RP
+$0
+271. Michael Busch
+CHC
+1B
+$0
+47. Cody Bellinger
+NYY
+OF
+$20 122. Tanner Bibee
+CLE
+SP
+$4
+197. Bubba Chandler
+PIT
+SP
+$0
+272. Carlos Correa
+HOU
+SS/3B
+$0
+48. Nico Hoerner
+CHC
+2B
+$19 123. Yainer Diaz
+HOU
+C/DH
+$4
+198. Will Vest
+DET
+RP
+$0
+273. Andrew Kittredge
+BAL
+RP
+$0
+49. Jackson Chourio
+MIL
+OF
+$19 124. Jacob Misiorowski
+MIL
+SP
+$4
+199. Joe Musgrove
+SD
+SP
+$0
+274. Logan Henderson
+MIL
+SP
+$0
+50. George Kirby
+SEA
+SP
+$19 125. Tyler Soderstrom
+ATH
+OF/1B
+$3
+200. Noelvi Marte
+CIN
+OF/3B
+$0
+275. Clay Holmes
+NYM
+SP
+$0
+51. Mookie Betts
+LAD
+SS
+$18 126. Marcus Semien
+NYM
+2B
+$3
+201. Chandler Simpson
+TB
+OF
+$0
+276. Kirby Yates
+LAA
+RP
+$0
+52. Nick Pivetta
+SD
+SP
+$18 127. Agustin Ramirez
+MIA
+C/DH
+$3
+202. Gerrit Cole
+NYY
+SP
+$0
+277. Jeff McNeil
+ATH
+2B/OF
+$0
+53. Jarren Duran
+BOS
+OF
+$18 128. Emmet Sheehan
+LAD
+SP
+$3
+203. Jeremiah Estrada
+SD
+RP
+$0
+278. Jasson Dominguez
+NYY
+OF
+$0
+54. Elly De La Cruz
+CIN
+SS
+$17 129. Byron Buxton
+MIN
+OF
+$3
+204. Carlos Rodon
+NYY
+SP
+$0
+279. Phil Maton
+CHC
+RP
+$0
+55. Jose Altuve
+HOU
+2B/OF/DH
+$17 130. Jackson Holliday
+BAL
+2B
+$3
+205. Yusei Kikuchi
+LAA
+SP
+$0
+280. Grant Taylor
+CWS
+RP
+$0
+56. Devin Williams
+NYM
+RP
+$16 131. Kenley Jansen
+DET
+RP
+$3
+206. Bailey Ober
+MIN
+SP
+$0
+281. Robert Stephenson
+LAA
+RP
+$0
+57. Steven Kwan
+CLE
+OF
+$16 132. Gavin Williams
+CLE
+SP
+$3
+207. Robert Garcia
+TEX
+RP
+$0
+282. Seth Lugo
+KC
+SP
+$0
+58. Blake Snell
+LAD
+SP
+$15 133. Bo Bichette
+NYM
+SS
+$3
+208. Alejandro Kirk
+TOR
+C
+$0
+283. Jose Ferrer
+SEA
+RP
+$0
+59. Austin Riley
+ATL
+3B
+$15 134. Nick Lodolo
+CIN
+SP
+$3
+209. Bryce Miller
+SEA
+SP
+$0
+284. Ian Seymour
+TB
+RP/SP
+$0
+60. Jackson Merrill
+SD
+OF
+$15 135. Zac Gallen
+FA
+SP
+$2
+210. Otto Lopez
+MIA
+SS/2B
+$0
+285. David Peterson
+NYM
+SP
+$0
+61. Dylan Cease
+TOR
+SP
+$14 136. Daniel Palencia
+CHC
+RP
+$2
+211. Kyle Stowers
+MIA
+OF
+$0
+286. Jonathan India
+KC
+2B/3B/OF/DH $0
+62. Kevin Gausman
+TOR
+SP
+$14 137. Michael King
+SD
+SP
+$2
+212. Miguel Vargas
+CWS
+3B/1B
+$0
+287. Tommy Edman
+LAD
+2B/OF
+$0
+63. George Springer
+TOR
+OF/DH
+$14 138. Isaac Paredes
+HOU
+3B
+$2
+213. Garrett Whitlock
+BOS
+RP
+$0
+288. Dylan Crews
+WSH
+OF
+$0
+64. Sonny Gray
+BOS
+SP
+$13 139. Andy Pages
+LAD
+OF
+$2
+214. Daylen Lile
+WSH
+OF
+$0
+289. Addison Barger
+TOR
+3B/OF
+$0
+65. Aroldis Chapman
+BOS
+RP
+$13 140. Ranger Suarez
+BOS
+SP
+$2
+215. Dansby Swanson
+CHC
+SS
+$0
+290. Michael Wacha
+KC
+SP
+$0
+66. Ben Rice
+NYY
+1B/C/DH
+$13 141. Willy Adames
+SF
+SS
+$2
+216. Kyle Finnegan
+DET
+RP
+$0
+291. Cedric Mullins
+TB
+OF
+$0
+67. David Bednar
+NYY
+RP
+$13 142. Cam Schlittler
+NYY
+SP
+$2
+217. Noah Cameron
+KC
+SP
+$0
+292. Roki Sasaki
+LAD
+SP
+$0
+68. Zack Wheeler
+PHI
+SP
+$13 143. Griffin Jax
+TB
+RP
+$2
+218. Trevor Story
+BOS
+SS
+$0
+293. Matt Strahm
+KC
+RP
+$0
+69. Matt Olson
+ATL
+1B
+$13 144. Luke Keaschall
+MIN
+2B
+$2
+219. Daulton Varsho
+TOR
+OF
+$0
+294. Luis Arraez
+SF
+1B/DH
+$0
+70. Geraldo Perdomo
+ARI
+SS
+$13 145. Shane Bieber
+TOR
+SP
+$2
+220. Ernie Clement
+TOR
+3B/2B/SS
+$0
+295. Brad Keller
+PHI
+RP
+$0
+71. Spencer Schwellenbach
+ATL
+SP
+$12 146. Bryson Stott
+PHI
+2B
+$2
+221. Yandy Diaz
+TB
+1B/DH
+$0
+296. Brenton Doyle
+COL
+OF
+$0
+72. Raisel Iglesias
+ATL
+RP
+$12 147. Jack Flaherty
+DET
+SP
+$2
+222. Seranthony Dominguez
+CWS
+RP
+$0
+297. Joey Cantillo
+CLE
+RP/SP
+$0
+73. Kyle Bradish
+BAL
+SP
+$12 148. Jeremy Pena
+HOU
+SS
+$2
+223. Shane McClanahan
+TB
+SP
+$0
+298. Tony Santillan
+CIN
+RP
+$0
+74. Jazz Chisholm Jr.
+NYY
+2B/3B
+$11 149. Bryan Abreu
+HOU
+RP
+$2
+224. Brady Singer
+CIN
+SP
+$0
+299. Andrew Benintendi
+CWS
+OF/DH
+$0
+75. Pete Crow-Armstrong
+CHC
+OF
+$11 150. Teoscar Hernandez
+LAD
+OF
+$2
+225. TJ Friedl
+CIN
+OF
+$0
+300. Cole Sands
+MIN
+RP
+$0
+ESPN Fantasy Baseball top 300: Points leagues (H2H and season total)
+"All pos." is a list of all positions at which the player is eligible in standard ESPN leagues. For position-by-position rankings, check out 
+ESPN.com/fantasy/baseball for more cheat sheets. Salary-cap values are based upon a standard 10-team ESPN league, with a $260             
+per-team budget and rosters including one apiece at C, 1B, 2B, 3B, SS and DH/UT, three OF and seven pitchers.
+Last updated:
+Thursday, February 5, 2026
