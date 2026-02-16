@@ -237,10 +237,23 @@ def process_batters():
         lag_df[[c for c in lag_df.columns if '_lag' in c]]
     ], axis=1)
 
-    # Only keep rows with at least 1-year lag data (for training)
+    # For training: keep rows with at least 1-year lag data
     lag1_cols = [c for c in batting_processed.columns if '_lag1' in c]
     batting_train = batting_processed.dropna(subset=lag1_cols[:5])  # Check first 5 lag columns
-    print(f"  Rows with lag data: {len(batting_train)}")
+    print(f"  Rows with lag data (for training): {len(batting_train)}")
+
+    # For prediction: keep ALL rows from latest year (including rookies)
+    # These players can be used for next-year predictions even without lag data
+    latest_year = batting_processed['Season'].max()
+    batting_latest = batting_processed[batting_processed['Season'] == latest_year]
+    rookies_added = len(batting_latest) - len(batting_train[batting_train['Season'] == latest_year])
+    print(f"  {latest_year} players (including {rookies_added} rookies): {len(batting_latest)}")
+
+    # Combine: training data + any latest-year rookies not already included
+    batting_train = pd.concat([
+        batting_train,
+        batting_latest[~batting_latest['IDfg'].isin(batting_train[batting_train['Season'] == latest_year]['IDfg'])]
+    ]).sort_values(['IDfg', 'Season']).reset_index(drop=True)
 
     # Load and merge Savant supplementary data (sweet_spot%, etc.)
     try:
@@ -317,10 +330,22 @@ def process_pitchers():
         lag_df[[c for c in lag_df.columns if '_lag' in c]]
     ], axis=1)
 
-    # Keep rows with lag data
+    # For training: keep rows with at least 1-year lag data
     lag1_cols = [c for c in pitching_processed.columns if '_lag1' in c]
     pitching_train = pitching_processed.dropna(subset=lag1_cols[:5])
-    print(f"  Rows with lag data: {len(pitching_train)}")
+    print(f"  Rows with lag data (for training): {len(pitching_train)}")
+
+    # For prediction: keep ALL rows from latest year (including rookies)
+    latest_year = pitching_processed['Season'].max()
+    pitching_latest = pitching_processed[pitching_processed['Season'] == latest_year]
+    rookies_added = len(pitching_latest) - len(pitching_train[pitching_train['Season'] == latest_year])
+    print(f"  {latest_year} players (including {rookies_added} rookies): {len(pitching_latest)}")
+
+    # Combine: training data + any latest-year rookies not already included
+    pitching_train = pd.concat([
+        pitching_train,
+        pitching_latest[~pitching_latest['IDfg'].isin(pitching_train[pitching_train['Season'] == latest_year]['IDfg'])]
+    ]).sort_values(['IDfg', 'Season']).reset_index(drop=True)
 
     # Merge pitch arsenal data
     try:
