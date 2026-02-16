@@ -15,21 +15,21 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 from config.settings import RAW_DATA_DIR, PROCESSED_DATA_DIR
 from config.scoring import BATTER_SCORING, PITCHER_SCORING_SKILL
 
-# Feature selections based on predictive correlation analysis
-# These are year N-1 metrics that best predict year N fantasy points
+# Feature selections: skill-based descriptive metrics only
+# Excludes traditional outcome stats (AVG, OBP, SLG, wOBA, etc.) which are
+# derived from the same counting stats as fantasy points and don't add
+# predictive power for identifying breakouts/declines.
 
 BATTER_FEATURES = [
-    # Expected stats (most predictive: 0.35-0.39 correlation)
+    # Expected stats (Statcast) - what contact quality SHOULD produce
     'xBA', 'xSLG', 'xwOBA',
-    # Batted ball quality
+    # Batted ball quality - raw skill indicators
     'EV', 'maxEV', 'Barrel%', 'HardHit%', 'Hard%',
-    # Plate discipline (K% is highly predictive: -0.30)
+    # Plate discipline - approach and contact skills
     'K%', 'BB%', 'BB/K', 'SwStr%', 'Contact%', 'O-Contact%', 'Z-Contact%',
     'O-Swing%', 'Z-Swing%', 'Zone%',
-    # Batted ball distribution
+    # Batted ball distribution - batted ball tendencies
     'GB%', 'FB%', 'LD%', 'HR/FB', 'Pull%',
-    # Traditional rate stats
-    'AVG', 'OBP', 'SLG', 'ISO', 'BABIP', 'wOBA', 'wRC+',
     # Speed
     'Spd',
     # Age
@@ -37,20 +37,44 @@ BATTER_FEATURES = [
 ]
 
 PITCHER_FEATURES = [
-    # Strikeout metrics (most predictive: 0.40-0.46)
-    'K%', 'K/9', 'K-BB%', 'K/BB',
-    # Whiff/contact (highly predictive)
+    # Strikeout/walk skills - core pitching skills
+    'K%', 'K/9', 'K-BB%', 'K/BB', 'BB%', 'BB/9',
+    # Whiff/contact - pitch quality indicators
     'SwStr%', 'Contact%', 'Z-Contact%', 'O-Contact%', 'O-Swing%',
-    # Expected stats (xERA is in FanGraphs, xBA is not - use AVG instead)
+    # Expected/estimator stats - skill-based run prevention estimators
     'xERA', 'xFIP', 'SIERA', 'FIP',
-    # Batted ball quality allowed
+    # Batted ball quality allowed - contact quality against
     'EV', 'Barrel%', 'HardHit%',
-    # Rate stats
-    'BB%', 'BB/9', 'H/9', 'HR/9', 'WHIP', 'AVG',
-    # Batted ball distribution
+    # Batted ball distribution - batted ball tendencies allowed
     'GB%', 'FB%', 'LD%', 'HR/FB',
-    # Other
-    'LOB%', 'BABIP', 'ERA',
+    # Rate stats (descriptive, not outcome-based)
+    'H/9', 'HR/9',
+    # Pitch velocity by type (using pitch info format where available)
+    'FBv',        # Fastball (old format)
+    'vSI (pi)',   # Sinker
+    'vFC (pi)',   # Cutter
+    'SLv',        # Slider (old format)
+    'CHv',        # Changeup (old format)
+    'vCU (pi)',   # Curveball
+    'vFS (pi)',   # Splitter
+    # Pitch usage
+    'FA% (pi)',   # Fastball
+    'SI% (pi)',   # Sinker
+    'FC% (pi)',   # Cutter
+    'SL%',        # Slider (old format)
+    'CH%',        # Changeup (old format)
+    'CU% (pi)',   # Curveball
+    'FS% (pi)',   # Splitter
+    # Pitch movement (horizontal X, vertical Z) - all main pitch types
+    'FA-X (pi)', 'FA-Z (pi)',  # Fastball
+    'SI-X (pi)', 'SI-Z (pi)',  # Sinker
+    'FC-X (pi)', 'FC-Z (pi)',  # Cutter
+    'SL-X (pi)', 'SL-Z (pi)',  # Slider
+    'CH-X (pi)', 'CH-Z (pi)',  # Changeup
+    'CU-X (pi)', 'CU-Z (pi)',  # Curveball
+    'FS-X (pi)', 'FS-Z (pi)',  # Splitter
+    # Stuff+ metrics (pitch quality grades)
+    'Stuff+', 'Pitching+',
     # Age
     'Age',
 ]
