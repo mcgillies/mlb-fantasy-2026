@@ -25,11 +25,12 @@ PITCHER_SCORING_SKILL = {
 }
 
 # Team-dependent scoring — applied via external projections, not the ML model.
+# Uses FanGraphs column names (SV, HLD)
 PITCHER_SCORING_TEAM = {
     "W": 2,
     "L": -2,
-    "Hold": 2,
-    "S": 5,
+    "SV": 5,
+    "HLD": 2,
 }
 
 # Combined (for final total calculation after adding projected W/L/Hold/S)
