@@ -228,15 +228,13 @@ def process_batters():
     print("  Creating lag features...")
     lag_df = create_lag_features(batting, 'IDfg', 'Season', feature_cols, lags=[1, 2])
 
-    # Create rolling averages for Fpoints_PA
-    print("  Creating rolling averages...")
-    rolling_df = create_rolling_features(batting, 'IDfg', 'Season', ['Fpoints_PA'], windows=[2, 3])
+    # Note: Removed Fpoints rolling averages - they dominated feature importance
+    # and made the model less useful for identifying skill-based breakouts/declines
 
     # Combine
     batting_processed = pd.concat([
         batting[id_cols + target_cols + feature_cols],
-        lag_df[[c for c in lag_df.columns if '_lag' in c]],
-        rolling_df
+        lag_df[[c for c in lag_df.columns if '_lag' in c]]
     ], axis=1)
 
     # Only keep rows with at least 1-year lag data (for training)
@@ -310,15 +308,13 @@ def process_pitchers():
     print("  Creating lag features...")
     lag_df = create_lag_features(pitching, 'IDfg', 'Season', feature_cols, lags=[1, 2])
 
-    # Rolling averages for Fpoints_IP
-    print("  Creating rolling averages...")
-    rolling_df = create_rolling_features(pitching, 'IDfg', 'Season', ['Fpoints_IP'], windows=[2, 3])
+    # Note: Removed Fpoints rolling averages - they dominated feature importance
+    # and made the model less useful for identifying skill-based breakouts/declines
 
     # Combine
     pitching_processed = pd.concat([
         pitching[id_cols + target_cols + feature_cols],
-        lag_df[[c for c in lag_df.columns if '_lag' in c]],
-        rolling_df
+        lag_df[[c for c in lag_df.columns if '_lag' in c]]
     ], axis=1)
 
     # Keep rows with lag data
