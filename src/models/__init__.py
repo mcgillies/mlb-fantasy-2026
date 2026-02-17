@@ -10,6 +10,8 @@ from .positional_adjustments import (
     calculate_par,
     get_primary_position,
     get_all_positions,
+    normalize_position,
+    normalize_position_string,
     print_replacement_summary,
 )
 
@@ -21,5 +23,7 @@ __all__ = [
     'calculate_par',
     'get_primary_position',
     'get_all_positions',
+    'normalize_position',
+    'normalize_position_string',
     'print_replacement_summary',
 ]
