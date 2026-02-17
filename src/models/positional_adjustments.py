@@ -20,7 +20,7 @@ from config.roster import (
     ROSTER_SLOTS,
     POSITION_PRIORITY,
     REPLACEMENT_COMPOSITE_SIZE,
-    BENCH_HITTER_SLOTS,
+    REPLACEMENT_TEAM_ADJUSTMENT,
     OUTFIELD_POSITIONS,
 )
 
@@ -80,8 +80,8 @@ def get_primary_position(position_str: str) -> str:
     Returns:
         Primary position string
     """
-    if pd.isna(position_str) or position_str == "":
-        return "Unknown"
+    if pd.isna(position_str) or position_str == "" or position_str == "Unknown":
+        return "UTIL"  # No position = no positional advantage
 
     # Normalize positions (LF/CF/RF -> OF)
     normalized = normalize_position_string(position_str)
@@ -98,28 +98,37 @@ def get_primary_position(position_str: str) -> str:
     if "RP" in positions:
         return "RP"
 
-    # DH-only players get "UTIL" designation
+    # DH-only or unknown players get "UTIL" designation
+    # They compete with the deepest pool for the UTIL slot
     if "DH" in positions:
         return "UTIL"
 
-    # Fallback to first listed
-    return positions[0] if positions else "Unknown"
+    # Fallback - treat as UTIL (no positional advantage)
+    return "UTIL"
 
 
 def get_all_positions(position_str: str) -> List[str]:
     """
     Get all eligible positions from a position string.
 
+    Normalizes outfield positions (LF/CF/RF -> OF).
+    Returns empty list for unknown/missing positions.
+
     Args:
-        position_str: Position string like "2B/SS", "OF/DH"
+        position_str: Position string like "2B/SS", "LF/DH"
 
     Returns:
-        List of position strings
+        List of normalized position strings (no duplicates)
     """
-    if pd.isna(position_str) or position_str == "":
+    if pd.isna(position_str) or position_str == "" or position_str == "Unknown":
         return []
 
-    return [p.strip() for p in str(position_str).split("/")]
+    # Normalize and deduplicate
+    normalized = normalize_position_string(position_str)
+    positions = [p.strip() for p in normalized.split("/") if p.strip()]
+
+    # Filter out "Unknown" if it somehow got through
+    return [p for p in positions if p != "Unknown"]
 
 
 def calculate_replacement_levels(
@@ -129,12 +138,14 @@ def calculate_replacement_levels(
     league_size: int = LEAGUE_SIZE,
     roster_slots: Dict[str, int] = ROSTER_SLOTS,
     composite_size: int = REPLACEMENT_COMPOSITE_SIZE,
+    team_adjustment: int = REPLACEMENT_TEAM_ADJUSTMENT,
 ) -> Dict[str, float]:
     """
     Calculate replacement level points for each position.
 
     Replacement level = average of players around the replacement threshold.
-    For a 12-team league with 1 C slot, the 13th catcher is replacement level.
+    Uses (league_size - team_adjustment) as effective teams to account for
+    multi-position eligibility and bench flexibility.
 
     Args:
         df: DataFrame with projected points and position
@@ -143,11 +154,13 @@ def calculate_replacement_levels(
         league_size: Number of teams in league
         roster_slots: Dict mapping position -> slots per team
         composite_size: Number of players to average around threshold
+        team_adjustment: Reduce effective teams by this amount (default 3)
 
     Returns:
         Dict mapping position -> replacement level points
     """
     replacement_levels = {}
+    effective_teams = league_size - team_adjustment
 
     for position in POSITION_PRIORITY:
         # Get players at this position
@@ -161,13 +174,9 @@ def calculate_replacement_levels(
         pos_players = pos_players.sort_values(points_col, ascending=False).reset_index(drop=True)
 
         # Calculate total starters drafted at this position
+        # Use effective_teams to account for multi-position eligibility
         slots = roster_slots.get(position, 1)
-        total_starters = league_size * slots
-
-        # Add bench consideration for hitters
-        if position in ["C", "1B", "2B", "3B", "SS", "OF"]:
-            # Some bench slots will be hitters
-            total_starters += int(league_size * BENCH_HITTER_SLOTS / 6)  # distribute across positions
+        total_starters = effective_teams * slots
 
         # Replacement level is just after starters
         replacement_idx = total_starters
@@ -182,6 +191,15 @@ def calculate_replacement_levels(
         else:
             # Not enough players, use last available
             replacement_levels[position] = pos_players[points_col].iloc[-1] if len(pos_players) > 0 else 0.0
+
+    # UTIL replacement = highest replacement level (deepest/most competitive pool)
+    # Since UTIL can be filled by any hitter, pure DH competes with overflow
+    # from the deepest position pools (1B, OF typically)
+    non_zero_levels = [v for v in replacement_levels.values() if v > 0]
+    if non_zero_levels:
+        replacement_levels["UTIL"] = max(non_zero_levels)
+    else:
+        replacement_levels["UTIL"] = 0.0
 
     return replacement_levels
 
@@ -269,7 +287,10 @@ def calculate_par_best_position(
     Calculate PAR using each player's best eligible position.
 
     For multi-position players (e.g., "2B/SS"), calculates PAR at each
-    position and returns the maximum.
+    position and returns the maximum (scarcest position = highest PAR).
+
+    DH-only players use UTIL replacement level since they compete with
+    all leftover hitters for the UTIL slot.
 
     Args:
         df: DataFrame with projections
@@ -284,14 +305,16 @@ def calculate_par_best_position(
         positions = get_all_positions(row[position_col])
         points = row[points_col]
 
+        # No positions = UTIL (no positional advantage)
         if not positions:
-            return 0, "Unknown"
+            util_repl = replacement_levels.get("UTIL", 0)
+            return points - util_repl, "UTIL"
 
         best_par = float('-inf')
         best_pos = positions[0]
 
         for pos in positions:
-            # Skip DH for PAR calculation (it's UTIL, handled separately)
+            # Skip DH - it's not a real position, UTIL is filled by leftovers
             if pos == "DH":
                 continue
             repl = replacement_levels.get(pos, 0)
@@ -300,10 +323,12 @@ def calculate_par_best_position(
                 best_par = par
                 best_pos = pos
 
-        # If only DH eligible, use that
+        # If only DH eligible (pure DH), use UTIL replacement level
+        # UTIL replacement = worst among all positions (deepest pool)
         if best_par == float('-inf') and "DH" in positions:
-            best_par = points - replacement_levels.get("DH", 0)
-            best_pos = "DH"
+            util_repl = replacement_levels.get("UTIL", 0)
+            best_par = points - util_repl
+            best_pos = "UTIL"
 
         return best_par if best_par != float('-inf') else 0, best_pos
 
@@ -416,4 +441,7 @@ def print_replacement_summary(
     for pos in POSITION_PRIORITY:
         if pos in replacement_levels:
             print(f"  {pos:4s}: {replacement_levels[pos]:7.1f} points")
+    # Also print UTIL if present
+    if "UTIL" in replacement_levels:
+        print(f"  UTIL: {replacement_levels['UTIL']:7.1f} points (=deepest position)")
     print()
