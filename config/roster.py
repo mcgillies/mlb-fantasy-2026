@@ -39,5 +39,7 @@ POSITION_PRIORITY = ["C", "SS", "2B", "3B", "1B", "OF"]
 # How many players around the threshold to average for stable replacement value
 REPLACEMENT_COMPOSITE_SIZE = 5  # average 5 players around replacement threshold
 
-# For bench consideration: assume ~50% of bench slots are hitters
-BENCH_HITTER_SLOTS = 1.5  # effectively adds 1-2 extra hitters per team to pool
+# Replacement level team adjustment
+# Use (league_size - REPLACEMENT_TEAM_ADJUSTMENT) as effective teams
+# Accounts for multi-position eligibility and bench flexibility
+REPLACEMENT_TEAM_ADJUSTMENT = 3
