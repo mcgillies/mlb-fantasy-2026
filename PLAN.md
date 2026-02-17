@@ -117,19 +117,29 @@ Predict 2026 fantasy baseball points using advanced metrics from Baseball Savant
 ---
 
 ## Phase 4: Prediction & Ranking
-**Status: Not started**
+**Status: In progress**
 
 ### 4.1 Generate 2026 predictions
-- [ ] Apply trained models to 2025 Statcast metrics
-- [ ] Get rate predictions (Fpoints/PA, Fpoints/IP — skill-based)
-- [ ] Scale to totals using averaged external PA/IP projections
-- [ ] Add W/L/Hold/Save contributions for pitchers from external projections
+- [x] Created prediction notebook (notebooks/05_2026_predictions.ipynb)
+- [x] Retrain models on all data (2016-2025)
+- [x] Apply trained models to 2025 features to predict 2026
+- [x] Get rate predictions (Fpoints/PA, Fpoints/IP — skill-based)
+- [ ] Download external projections from FanGraphs (Steamer/ZiPS)
+  - Batters: PA projections → `data/projections/steamer_batters_2026.csv`
+  - Pitchers: IP/W/L/SV/HLD → `data/projections/steamer_pitchers_2026.csv`
+- [ ] Run notebook with projections to get totals
 - [ ] Handle edge cases (rookies, role changes, injuries)
 
 ### 4.2 Rankings
-- [ ] Overall rankings by total projected Fpoints
-- [ ] Positional rankings (C, 1B, 2B, 3B, SS, OF, SP, RP, DH)
-- [ ] Save to `predictions/`
+- [x] Notebook generates overall rankings by total projected Fpoints
+- [x] SP and RP rankings included separately
+- [x] Outputs saved to `predictions/` folder
+- [ ] Add positional rankings for batters (C, 1B, 2B, 3B, SS, OF, DH)
+
+### 4.3 ESPN Comparison
+- [x] Created comparison notebook (notebooks/06_espn_comparison.ipynb)
+- [ ] Download ESPN rankings → `data/espn/espn_rankings_2026.csv`
+- [ ] Run comparison to identify sleepers and overvalued players
 
 ---
 
