@@ -209,7 +209,7 @@ def calculate_pitcher_replacement_levels(
     points_col: str = "Projected_Points",
     type_col: str = "Type",
     league_size: int = LEAGUE_SIZE,
-    rp_per_team: float = 1.5,
+    rp_per_team: float = 1.0,
     composite_size: int = REPLACEMENT_COMPOSITE_SIZE,
 ) -> Dict[str, float]:
     """
@@ -460,7 +460,7 @@ def add_pitcher_adjustments(
     points_col: str = "Projected_Points",
     type_col: str = "Type",
     league_size: int = LEAGUE_SIZE,
-    rp_per_team: float = 1.5,
+    rp_per_team: float = 1.0,
 ) -> pd.DataFrame:
     """
     Add positional adjustment columns for pitchers.
