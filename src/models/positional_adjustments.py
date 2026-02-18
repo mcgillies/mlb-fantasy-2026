@@ -204,6 +204,78 @@ def calculate_replacement_levels(
     return replacement_levels
 
 
+def calculate_pitcher_replacement_levels(
+    df: pd.DataFrame,
+    points_col: str = "Projected_Points",
+    type_col: str = "Type",
+    league_size: int = LEAGUE_SIZE,
+    rp_per_team: float = 1.5,
+    composite_size: int = REPLACEMENT_COMPOSITE_SIZE,
+) -> Dict[str, float]:
+    """
+    Calculate replacement levels for SP and RP.
+
+    SP uses the combined pitcher pool (all pitchers compete together),
+    while RP uses a separate smaller pool to capture scarcity value.
+
+    Roster construction assumptions:
+    - 8 P slots + 2-3 bench pitchers = 10-11 pitchers per team
+    - 12 GS/week cap means teams need 1-2 RP
+    - RP are scarce but have lower raw points
+
+    Args:
+        df: DataFrame with pitcher projections (must have Type column)
+        points_col: Column for projected points
+        type_col: Column indicating SP or RP
+        league_size: Number of teams
+        rp_per_team: Average RP rostered per team (default 1.5)
+        composite_size: Players to average for replacement level
+
+    Returns:
+        Dict with 'SP' and 'RP' replacement levels
+    """
+    replacement_levels = {}
+
+    # SP: Use combined pitcher pool (old approach)
+    # This keeps SP PAR at the original levels
+    all_pitchers = df.sort_values(points_col, ascending=False).reset_index(drop=True)
+    pitcher_slots = 3  # Base P slots per team
+    total_pitchers = league_size * pitcher_slots + league_size  # + bench
+
+    replacement_idx = total_pitchers
+    start_idx = max(0, replacement_idx - composite_size // 2)
+    end_idx = min(len(all_pitchers), replacement_idx + composite_size // 2 + 1)
+
+    if start_idx < len(all_pitchers):
+        replacement_levels["SP"] = all_pitchers.iloc[start_idx:end_idx][points_col].mean()
+    elif len(all_pitchers) > 0:
+        replacement_levels["SP"] = all_pitchers[points_col].iloc[-1]
+    else:
+        replacement_levels["SP"] = 0.0
+
+    # RP: Use separate RP-only pool for scarcity boost
+    rp_df = df[df[type_col] == "RP"].copy()
+
+    if len(rp_df) == 0:
+        replacement_levels["RP"] = replacement_levels["SP"]  # Fallback
+    else:
+        rp_df = rp_df.sort_values(points_col, ascending=False).reset_index(drop=True)
+        total_rp = int(league_size * rp_per_team)
+
+        replacement_idx = total_rp
+        start_idx = max(0, replacement_idx - composite_size // 2)
+        end_idx = min(len(rp_df), replacement_idx + composite_size // 2 + 1)
+
+        if start_idx < len(rp_df):
+            replacement_levels["RP"] = rp_df.iloc[start_idx:end_idx][points_col].mean()
+        elif len(rp_df) > 0:
+            replacement_levels["RP"] = rp_df[points_col].iloc[-1]
+        else:
+            replacement_levels["RP"] = replacement_levels["SP"]
+
+    return replacement_levels
+
+
 def calculate_pitcher_replacement_level(
     df: pd.DataFrame,
     points_col: str = "Projected_Points",
@@ -212,28 +284,15 @@ def calculate_pitcher_replacement_level(
     composite_size: int = REPLACEMENT_COMPOSITE_SIZE,
 ) -> float:
     """
-    Calculate replacement level for pitchers.
+    DEPRECATED: Use calculate_pitcher_replacement_levels() for separate SP/RP levels.
 
-    Since there's no SP/RP distinction in roster slots, all pitchers
-    compete for the same pool.
-
-    Args:
-        df: DataFrame with pitcher projections
-        points_col: Column for projected points
-        league_size: Number of teams
-        pitcher_slots: P slots per team
-        composite_size: Players to average for replacement level
-
-    Returns:
-        Replacement level points for pitchers
+    Calculate replacement level for pitchers (single pool).
+    Kept for backwards compatibility.
     """
     pitchers = df.sort_values(points_col, ascending=False).reset_index(drop=True)
 
-    # Total pitchers drafted as starters
     total_starters = league_size * pitcher_slots
-
-    # Add some for bench
-    total_starters += league_size  # assume ~1 bench pitcher per team
+    total_starters += league_size
 
     replacement_idx = total_starters
 
@@ -399,36 +458,60 @@ def add_positional_adjustments(
 def add_pitcher_adjustments(
     df: pd.DataFrame,
     points_col: str = "Projected_Points",
+    type_col: str = "Type",
     league_size: int = LEAGUE_SIZE,
+    rp_per_team: float = 1.5,
 ) -> pd.DataFrame:
     """
     Add positional adjustment columns for pitchers.
 
-    Pitchers have minimal adjustment since there's no SP/RP distinction
-    in the roster, but we still calculate PAR for consistency.
+    SP uses the combined pitcher pool for replacement (keeps original PAR).
+    RP uses a separate smaller pool to capture scarcity value (~1.5 per team).
 
     Args:
-        df: DataFrame with pitcher projections
+        df: DataFrame with pitcher projections (must have Type column)
         points_col: Column name for projected points
+        type_col: Column indicating SP or RP
         league_size: Number of teams in league
+        rp_per_team: Average RP rostered per team (for scarcity calc)
 
     Returns:
-        DataFrame with added columns
+        DataFrame with added columns (Replacement_Level, PAR, PAR_Rank)
     """
     result = df.copy()
 
-    # Calculate replacement level for pitchers
-    replacement_level = calculate_pitcher_replacement_level(
+    # Calculate replacement levels (SP=combined pool, RP=separate pool)
+    replacement_levels = calculate_pitcher_replacement_levels(
         result,
         points_col=points_col,
+        type_col=type_col,
         league_size=league_size,
+        rp_per_team=rp_per_team,
     )
 
-    result["Replacement_Level"] = replacement_level
-    result["PAR"] = result[points_col] - replacement_level
+    # Map replacement level based on pitcher type
+    result["Replacement_Level"] = result[type_col].map(replacement_levels)
+
+    # Calculate PAR
+    result["PAR"] = result[points_col] - result["Replacement_Level"]
+
+    # Rank all pitchers together by PAR
     result["PAR_Rank"] = result["PAR"].rank(ascending=False, method="min").astype(int)
 
     return result
+
+
+def print_pitcher_replacement_summary(
+    replacement_levels: Dict[str, float],
+    title: str = "Pitcher Replacement Levels",
+) -> None:
+    """Print formatted pitcher replacement level summary."""
+    print(f"\n{title}")
+    print("=" * 40)
+    for ptype in ["SP", "RP"]:
+        if ptype in replacement_levels:
+            print(f"  {ptype}: {replacement_levels[ptype]:7.1f} points")
+    print()
 
 
 def print_replacement_summary(
