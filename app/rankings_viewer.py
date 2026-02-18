@@ -28,6 +28,9 @@ COLUMN_RENAMES = {
     "Avg_Proj_Fpts": "FanGraphs Projected Fpoints",
     "ML_PAR": "ML PAR",
     "Proj_PAR": "FanGraphs PAR",
+    "ML_vs_ESPN": "ML vs ESPN",
+    "FG_vs_ESPN": "FG vs ESPN",
+    "ML_vs_FG": "ML vs FG",
 }
 
 # Reverse mapping for internal use
@@ -44,6 +47,23 @@ def load_rankings():
         st.error("Master rankings file not found. Run notebook 05 first.")
         return None
     df = pd.read_csv(file_path)
+
+    # For players not in ESPN top 300 (ESPN_Rank = 300), use ML rank instead for comparisons
+    if "ESPN_Rank" in df.columns and "ML_PAR_Rank" in df.columns:
+        df["ESPN_Rank_Adj"] = df.apply(
+            lambda row: row["ML_PAR_Rank"] if row["ESPN_Rank"] == 300 else row["ESPN_Rank"],
+            axis=1
+        )
+
+    # Add rank difference columns (using adjusted ESPN rank)
+    espn_col = "ESPN_Rank_Adj" if "ESPN_Rank_Adj" in df.columns else "ESPN_Rank"
+    if "ML_PAR_Rank" in df.columns and espn_col in df.columns:
+        df["ML_vs_ESPN"] = df[espn_col] - df["ML_PAR_Rank"]
+    if "Proj_PAR_Rank" in df.columns and espn_col in df.columns:
+        df["FG_vs_ESPN"] = df[espn_col] - df["Proj_PAR_Rank"]
+    if "ML_PAR_Rank" in df.columns and "Proj_PAR_Rank" in df.columns:
+        df["ML_vs_FG"] = df["Proj_PAR_Rank"] - df["ML_PAR_Rank"]
+
     return df
 
 df = load_rankings()
@@ -74,6 +94,21 @@ if df is not None:
     else:
         selected_type = "All"
 
+    # Top X filter
+    st.sidebar.header("Top X Filter")
+    rank_cols = ["ML_PAR_Rank", "ML_Raw_Rank", "Proj_PAR_Rank", "Proj_Raw_Rank", "ESPN_Rank"]
+    rank_cols = [c for c in rank_cols if c in df.columns]
+    rank_col_display = [COLUMN_RENAMES.get(c, c) for c in rank_cols]
+
+    enable_top_x = st.sidebar.checkbox("Enable Top X Filter", value=False)
+    if enable_top_x:
+        top_x_rank_display = st.sidebar.selectbox("Rank by", rank_col_display)
+        top_x_rank = COLUMN_RENAMES_REV.get(top_x_rank_display, top_x_rank_display)
+        top_x_value = st.sidebar.slider("Show Top", 10, 500, 100)
+    else:
+        top_x_rank = None
+        top_x_value = None
+
     # Apply filters
     filtered_df = df.copy()
 
@@ -93,6 +128,10 @@ if df is not None:
     if selected_type != "All":
         filtered_df = filtered_df[filtered_df["Type"] == selected_type]
 
+    # Top X filter
+    if enable_top_x and top_x_rank:
+        filtered_df = filtered_df[filtered_df[top_x_rank] <= top_x_value]
+
     # Display stats
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Total Players", len(filtered_df))
@@ -106,8 +145,11 @@ if df is not None:
     # Remove Type from available columns
     available_cols = [c for c in available_cols if c != "Type"]
 
-    default_cols = ["ML_Raw_Rank", "ML_PAR_Rank", "Proj_Raw_Rank", "Proj_PAR_Rank", "ESPN_Rank",
-                    "Name", "Team", "Position", "Projected_Fpoints", "Avg_Proj_Fpts"]
+    # Column order: Name/Team/Position first, then ESPN, then ML group, then FanGraphs group, then diffs
+    default_cols = ["Name", "Team", "Position", "ESPN_Rank",
+                    "ML_Raw_Rank", "ML_PAR_Rank", "Projected_Fpoints",
+                    "Proj_Raw_Rank", "Proj_PAR_Rank", "Avg_Proj_Fpts",
+                    "ML_vs_ESPN", "FG_vs_ESPN", "ML_vs_FG"]
     default_cols = [c for c in default_cols if c in available_cols]
 
     # Create display names for multiselect
@@ -178,18 +220,14 @@ if df is not None:
     st.subheader("Quick Comparison")
     st.write("Compare ranking systems for top players:")
 
-    comparison_cols = ["Name", "Position", "ML_Raw_Rank", "ML_PAR_Rank", "Proj_Raw_Rank", "Proj_PAR_Rank", "ESPN_Rank"]
+    comparison_cols = ["Name", "Team", "Position", "ESPN_Rank",
+                       "ML_PAR_Rank", "Proj_PAR_Rank",
+                       "ML_vs_ESPN", "FG_vs_ESPN", "ML_vs_FG"]
     comparison_cols = [c for c in comparison_cols if c in df.columns]
 
     top_n = st.slider("Show top N players", 10, 100, 30)
 
     comparison_df = filtered_df.head(top_n)[comparison_cols].copy()
-
-    # Add rank difference columns
-    if "ML_PAR_Rank" in comparison_df.columns and "ESPN_Rank" in comparison_df.columns:
-        comparison_df["Adjusted ML vs ESPN"] = comparison_df["ESPN_Rank"] - comparison_df["ML_PAR_Rank"]
-    if "Proj_PAR_Rank" in comparison_df.columns and "ESPN_Rank" in comparison_df.columns:
-        comparison_df["Adjusted FG vs ESPN"] = comparison_df["ESPN_Rank"] - comparison_df["Proj_PAR_Rank"]
 
     # Rename columns for display
     comparison_df = comparison_df.rename(columns=COLUMN_RENAMES)
