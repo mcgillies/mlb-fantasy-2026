@@ -12,22 +12,26 @@ from config.settings import RANDOM_STATE
 
 def create_lag_features(df, group_col="player_id", value_cols=None, lags=[1, 2]):
     """
-    Create lagged versions of features (previous 1-2 seasons).
+    Create lagged features using level + trend approach.
 
-    Each row already has metrics from year N-1 predicting year N fpoints.
-    This adds year N-2 metrics as additional features for multi-year context.
+    Instead of multiple correlated lag features (lag1, lag2), this creates:
+    - _lag1: Recent level (year N-1 metrics)
+    - _trend: Direction of change (lag1 - lag2), capturing improvement/decline
+
+    This makes features more orthogonal - one captures current state,
+    one captures whether the player is improving or declining.
 
     Args:
         df: DataFrame sorted by player and year.
         group_col: Column to group by (player identifier).
         value_cols: Columns to create lags for.
-        lags: List of lag periods (1 = already present via the merge,
-              2 = two seasons back).
+        lags: List of lag periods (default [1, 2] for level + trend).
 
     Returns:
-        DataFrame with lag columns added (e.g., xBA_lag2).
+        DataFrame with _lag1 (level) and _trend (direction) columns.
     """
-    # TODO: implement lag feature creation
+    # NOTE: Main implementation is in src/data/process.py
+    # This is a placeholder for the features module API
     pass
 
 
