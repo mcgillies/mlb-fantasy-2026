@@ -20,64 +20,119 @@ from config.scoring import BATTER_SCORING, PITCHER_SCORING_SKILL
 # derived from the same counting stats as fantasy points and don't add
 # predictive power for identifying breakouts/declines.
 
+# =============================================================================
+# REDUCED FEATURE SETS (for interpretable SHAP analysis)
+# Selected based on multicollinearity analysis in notebook 07
+# Uses one representative per concept group to reduce redundancy
+# =============================================================================
+
 BATTER_FEATURES = [
-    # Expected stats (Statcast) - what contact quality SHOULD produce
-    'xBA', 'xSLG', 'xwOBA',
-    # Batted ball quality - raw skill indicators
-    'EV', 'maxEV', 'Barrel%', 'HardHit%', 'Hard%',
-    # Plate discipline - approach and contact skills
-    'K%', 'BB%', 'BB/K', 'SwStr%', 'Contact%', 'O-Contact%', 'Z-Contact%',
-    'O-Swing%', 'Z-Swing%', 'Zone%',
-    # Batted ball distribution - batted ball tendencies
-    'GB%', 'FB%', 'LD%', 'HR/FB', 'Pull%',
+    # Contact quality - xwOBA replaces xBA, xSLG (highly correlated)
+    'xwOBA',
+    # Batted ball quality - Barrel% replaces EV, HardHit%, Hard%
+    'Barrel%',
+    # Plate discipline - core outcomes
+    'K%', 'BB%',
+    # Chase discipline - O-Contact% captures ability to lay off bad pitches
+    'O-Contact%',
+    # Batted ball distribution - FB% for fly ball tendency
+    'FB%',
+    # Power per fly ball
+    'HR/FB',
     # Speed
     'Spd',
-    # Age
+    # Spray tendency
+    'Pull%',
+    # Age (NOTE: Age excluded from trend features - always increases by 1)
     'Age',
 ]
 
+# Features to EXCLUDE from trend calculation (Age trend is useless - always ~1)
+EXCLUDE_FROM_TREND = ['Age']
+
 PITCHER_FEATURES = [
-    # Strikeout/walk skills - core pitching skills
-    'K%', 'K/9', 'K-BB%', 'K/BB', 'BB%', 'BB/9',
-    # Whiff/contact - pitch quality indicators
-    'SwStr%', 'Contact%', 'Z-Contact%', 'O-Contact%', 'O-Swing%',
-    # Expected/estimator stats - skill-based run prevention estimators
-    'xERA', 'xFIP', 'SIERA', 'FIP',
-    # Batted ball quality allowed - contact quality against
-    'EV', 'Barrel%', 'HardHit%',
-    # Batted ball distribution - batted ball tendencies allowed
-    'GB%', 'FB%', 'LD%', 'HR/FB',
-    # Rate stats (descriptive, not outcome-based)
-    'H/9', 'HR/9',
-    # Pitch velocity by type (using pitch info format where available)
-    'FBv',        # Fastball (old format)
-    'vSI (pi)',   # Sinker
-    'vFC (pi)',   # Cutter
-    'SLv',        # Slider (old format)
-    'CHv',        # Changeup (old format)
-    'vCU (pi)',   # Curveball
-    'vFS (pi)',   # Splitter
-    # Pitch usage
-    'FA% (pi)',   # Fastball
-    'SI% (pi)',   # Sinker
-    'FC% (pi)',   # Cutter
-    'SL%',        # Slider (old format)
-    'CH%',        # Changeup (old format)
-    'CU% (pi)',   # Curveball
-    'FS% (pi)',   # Splitter
-    # Pitch movement (horizontal X, vertical Z) - all main pitch types
-    'FA-X (pi)', 'FA-Z (pi)',  # Fastball
-    'SI-X (pi)', 'SI-Z (pi)',  # Sinker
-    'FC-X (pi)', 'FC-Z (pi)',  # Cutter
-    'SL-X (pi)', 'SL-Z (pi)',  # Slider
-    'CH-X (pi)', 'CH-Z (pi)',  # Changeup
-    'CU-X (pi)', 'CU-Z (pi)',  # Curveball
-    'FS-X (pi)', 'FS-Z (pi)',  # Splitter
-    # Stuff+ metrics (pitch quality grades)
-    'Stuff+', 'Pitching+',
-    # Age
+    # Strikeout ability - K% replaces K/9, K-BB%, K/BB
+    'K%',
+    # Walk prevention
+    'BB%',
+    # Swing and miss skill
+    'SwStr%',
+    # Run prevention - xERA replaces xFIP, SIERA, FIP
+    'xERA',
+    # Batted ball quality - Barrel% replaces EV, HardHit%
+    'Barrel%',
+    # Ground ball tendency
+    'GB%',
+    # Stuff+ composite (captures velocity, movement, spin)
+    # NOTE: 53% NaN - newer stat, may cause issues
+    'Stuff+',
+    # Age (NOTE: Age excluded from trend features)
     'Age',
 ]
+
+# =============================================================================
+# FULL FEATURE SETS (original - commented out for reference)
+# Uncomment these and comment out the reduced sets above to use full features
+# =============================================================================
+
+# BATTER_FEATURES_FULL = [
+#     # Expected stats (Statcast) - what contact quality SHOULD produce
+#     'xBA', 'xSLG', 'xwOBA',
+#     # Batted ball quality - raw skill indicators
+#     'EV', 'maxEV', 'Barrel%', 'HardHit%', 'Hard%',
+#     # Plate discipline - approach and contact skills
+#     'K%', 'BB%', 'BB/K', 'SwStr%', 'Contact%', 'O-Contact%', 'Z-Contact%',
+#     'O-Swing%', 'Z-Swing%', 'Zone%',
+#     # Batted ball distribution - batted ball tendencies
+#     'GB%', 'FB%', 'LD%', 'HR/FB', 'Pull%',
+#     # Speed
+#     'Spd',
+#     # Age
+#     'Age',
+# ]
+
+# PITCHER_FEATURES_FULL = [
+#     # Strikeout/walk skills - core pitching skills
+#     'K%', 'K/9', 'K-BB%', 'K/BB', 'BB%', 'BB/9',
+#     # Whiff/contact - pitch quality indicators
+#     'SwStr%', 'Contact%', 'Z-Contact%', 'O-Contact%', 'O-Swing%',
+#     # Expected/estimator stats - skill-based run prevention estimators
+#     'xERA', 'xFIP', 'SIERA', 'FIP',
+#     # Batted ball quality allowed - contact quality against
+#     'EV', 'Barrel%', 'HardHit%',
+#     # Batted ball distribution - batted ball tendencies allowed
+#     'GB%', 'FB%', 'LD%', 'HR/FB',
+#     # Rate stats (descriptive, not outcome-based)
+#     'H/9', 'HR/9',
+#     # Pitch velocity by type (using pitch info format where available)
+#     'FBv',        # Fastball (old format)
+#     'vSI (pi)',   # Sinker
+#     'vFC (pi)',   # Cutter
+#     'SLv',        # Slider (old format)
+#     'CHv',        # Changeup (old format)
+#     'vCU (pi)',   # Curveball
+#     'vFS (pi)',   # Splitter
+#     # Pitch usage
+#     'FA% (pi)',   # Fastball
+#     'SI% (pi)',   # Sinker
+#     'FC% (pi)',   # Cutter
+#     'SL%',        # Slider (old format)
+#     'CH%',        # Changeup (old format)
+#     'CU% (pi)',   # Curveball
+#     'FS% (pi)',   # Splitter
+#     # Pitch movement (horizontal X, vertical Z) - all main pitch types
+#     'FA-X (pi)', 'FA-Z (pi)',  # Fastball
+#     'SI-X (pi)', 'SI-Z (pi)',  # Sinker
+#     'FC-X (pi)', 'FC-Z (pi)',  # Cutter
+#     'SL-X (pi)', 'SL-Z (pi)',  # Slider
+#     'CH-X (pi)', 'CH-Z (pi)',  # Changeup
+#     'CU-X (pi)', 'CU-Z (pi)',  # Curveball
+#     'FS-X (pi)', 'FS-Z (pi)',  # Splitter
+#     # Stuff+ metrics (pitch quality grades)
+#     'Stuff+', 'Pitching+',
+#     # Age
+#     'Age',
+# ]
 
 
 def ensure_processed_dir():
@@ -137,22 +192,58 @@ def calculate_pitcher_fpoints(df):
     return df
 
 
-def create_lag_features(df, id_col, year_col, feature_cols, lags=[1, 2]):
+def create_lag_features(df, id_col, year_col, feature_cols, lags=[1, 2], exclude_from_trend=None):
     """
-    Create lagged features (previous 1-2 seasons).
+    Create lagged features using level + trend approach.
 
-    Year N-1 metrics are used to predict year N fantasy points.
+    Instead of multiple correlated lag features (lag1, lag2), this creates:
+    - _lag1: Recent level (year N-1 metrics)
+    - _trend: Direction of change (lag1 - lag2), capturing improvement/decline
+    - has_trend: Indicator (1 if trend data exists, 0 if not)
+
+    This makes features more orthogonal - one captures current state,
+    one captures whether the player is improving or declining.
+
+    Args:
+        df: DataFrame with player data
+        id_col: Column identifying players (e.g., 'IDfg')
+        year_col: Column identifying seasons (e.g., 'Season')
+        feature_cols: List of metric columns to create lag/trend features for
+        lags: List of lag periods (default [1, 2] for level + trend)
+        exclude_from_trend: List of features to exclude from trend calculation
+                           (e.g., Age - always increases by 1, useless as trend)
+
+    Returns:
+        DataFrame with _lag1 (level), _trend (direction), and has_trend indicator
     """
+    if exclude_from_trend is None:
+        exclude_from_trend = []
+
     df = df.sort_values([id_col, year_col]).copy()
 
-    lagged_dfs = [df]
+    # Create lag1 (level - most recent season)
+    lag1 = df.groupby(id_col)[feature_cols].shift(1)
+    lag1.columns = [f'{c}_lag1' for c in feature_cols]
 
-    for lag in lags:
-        lagged = df.groupby(id_col)[feature_cols].shift(lag)
-        lagged.columns = [f'{c}_lag{lag}' for c in feature_cols]
-        lagged_dfs.append(lagged)
+    # Create lag2 (needed to compute trend)
+    lag2 = df.groupby(id_col)[feature_cols].shift(2)
 
-    result = pd.concat(lagged_dfs, axis=1)
+    # Features to include in trend calculation
+    trend_features = [c for c in feature_cols if c not in exclude_from_trend]
+
+    # Create trend features (lag1 - lag2 = direction of change)
+    # Positive trend = improving, negative trend = declining
+    trend_data = {}
+    for c in trend_features:
+        trend_data[f'{c}_trend'] = lag1[f'{c}_lag1'].values - lag2[c].values
+    trend_df = pd.DataFrame(trend_data, index=df.index)
+
+    # Create has_trend indicator (1 if player has 2+ years of data, 0 otherwise)
+    # This helps the model know if trend values are real or will be imputed
+    has_trend = (~lag2[feature_cols[0]].isna()).astype(int)
+    has_trend_df = pd.DataFrame({'has_trend': has_trend}, index=df.index)
+
+    result = pd.concat([df, lag1, trend_df, has_trend_df], axis=1)
     return result
 
 
@@ -224,17 +315,21 @@ def process_batters():
     id_cols = ['IDfg', 'Season', 'Name', 'Team', 'Age', 'PA', 'G']
     target_cols = ['Fpoints', 'Fpoints_PA', 'TB', 'R', 'RBI', 'BB', 'SB', 'SO']
 
-    # Create lag features
+    # Create lag features (exclude Age from trend - always increases by 1)
     print("  Creating lag features...")
-    lag_df = create_lag_features(batting, 'IDfg', 'Season', feature_cols, lags=[1, 2])
+    lag_df = create_lag_features(
+        batting, 'IDfg', 'Season', feature_cols, lags=[1, 2],
+        exclude_from_trend=EXCLUDE_FROM_TREND
+    )
 
     # Note: Removed Fpoints rolling averages - they dominated feature importance
     # and made the model less useful for identifying skill-based breakouts/declines
 
-    # Combine
+    # Combine (include lag1 level, trend features, and has_trend indicator)
+    lag_trend_cols = [c for c in lag_df.columns if '_lag1' in c or '_trend' in c or c == 'has_trend']
     batting_processed = pd.concat([
         batting[id_cols + target_cols + feature_cols],
-        lag_df[[c for c in lag_df.columns if '_lag' in c]]
+        lag_df[lag_trend_cols]
     ], axis=1)
 
     # For training: keep rows with at least 1-year lag data
@@ -317,17 +412,21 @@ def process_pitchers():
     pitching['SP_pct'] = pitching['GS'] / pitching['G']
     feature_cols.append('SP_pct')
 
-    # Create lag features
+    # Create lag features (exclude Age from trend - always increases by 1)
     print("  Creating lag features...")
-    lag_df = create_lag_features(pitching, 'IDfg', 'Season', feature_cols, lags=[1, 2])
+    lag_df = create_lag_features(
+        pitching, 'IDfg', 'Season', feature_cols, lags=[1, 2],
+        exclude_from_trend=EXCLUDE_FROM_TREND
+    )
 
     # Note: Removed Fpoints rolling averages - they dominated feature importance
     # and made the model less useful for identifying skill-based breakouts/declines
 
-    # Combine
+    # Combine (include lag1 level, trend features, and has_trend indicator)
+    lag_trend_cols = [c for c in lag_df.columns if '_lag1' in c or '_trend' in c or c == 'has_trend']
     pitching_processed = pd.concat([
         pitching[id_cols + target_cols + feature_cols],
-        lag_df[[c for c in lag_df.columns if '_lag' in c]]
+        lag_df[lag_trend_cols]
     ], axis=1)
 
     # For training: keep rows with at least 1-year lag data
