@@ -21,29 +21,25 @@ from config.scoring import BATTER_SCORING, PITCHER_SCORING_SKILL
 # predictive power for identifying breakouts/declines.
 
 # =============================================================================
-# REDUCED FEATURE SETS (for interpretable SHAP analysis)
+# EXPANDED FEATURE SETS (balanced interpretability and coverage)
 # Selected based on multicollinearity analysis in notebook 07
-# Uses one representative per concept group to reduce redundancy
+# Some correlation is acceptable - different measurements of related skills
 # =============================================================================
 
 BATTER_FEATURES = [
-    # Contact quality - xwOBA replaces xBA, xSLG (highly correlated)
-    'xwOBA',
-    # Batted ball quality - Barrel% replaces EV, HardHit%, Hard%
-    'Barrel%',
-    # Plate discipline - core outcomes
-    'K%', 'BB%',
-    # Chase discipline - O-Contact% captures ability to lay off bad pitches
-    'O-Contact%',
-    # Batted ball distribution - FB% for fly ball tendency
-    'FB%',
-    # Power per fly ball
-    'HR/FB',
+    # Expected stats - both provide nuance
+    'xwOBA', 'xBA',
+    # Batted ball quality - fuller coverage
+    'EV', 'maxEV', 'Barrel%', 'HardHit%',
+    # Plate discipline - complete picture
+    'K%', 'BB%', 'SwStr%',
+    'O-Contact%', 'Z-Contact%',  # Contact in/outside zone
+    'O-Swing%',  # Chase rate
+    # Batted ball profile
+    'FB%', 'HR/FB', 'Pull%',
     # Speed
     'Spd',
-    # Spray tendency
-    'Pull%',
-    # Age (NOTE: Age excluded from trend features - always increases by 1)
+    # Age (NOTE: excluded from trend - always increases by 1)
     'Age',
 ]
 
@@ -51,22 +47,17 @@ BATTER_FEATURES = [
 EXCLUDE_FROM_TREND = ['Age']
 
 PITCHER_FEATURES = [
-    # Strikeout ability - K% replaces K/9, K-BB%, K/BB
-    'K%',
-    # Walk prevention
-    'BB%',
-    # Swing and miss skill
-    'SwStr%',
-    # Run prevention - xERA replaces xFIP, SIERA, FIP
-    'xERA',
-    # Batted ball quality - Barrel% replaces EV, HardHit%
-    'Barrel%',
-    # Ground ball tendency
-    'GB%',
-    # Stuff+ composite (captures velocity, movement, spin)
-    # NOTE: 53% NaN - newer stat, may cause issues
+    # K/BB skills
+    'K%', 'BB%',
+    # Whiff/Contact metrics
+    'SwStr%', 'O-Swing%', 'O-Contact%',
+    # Run prevention estimators (xERA + SIERA for different approaches)
+    'xERA', 'SIERA',
+    # Batted ball quality/profile
+    'Barrel%', 'GB%',
+    # Stuff quality composite
     'Stuff+',
-    # Age (NOTE: Age excluded from trend features)
+    # Age (NOTE: excluded from trend)
     'Age',
 ]
 
@@ -446,28 +437,12 @@ def process_pitchers():
         pitching_latest[~pitching_latest['IDfg'].isin(pitching_train[pitching_train['Season'] == latest_year]['IDfg'])]
     ]).sort_values(['IDfg', 'Season']).reset_index(drop=True)
 
-    # Merge pitch arsenal data
-    try:
-        arsenal = pd.read_csv(os.path.join(RAW_DATA_DIR, 'savant_pitcher_arsenal.csv'))
-        id_map = pd.read_csv(os.path.join(RAW_DATA_DIR, 'player_id_map.csv'))
-        id_map = id_map[['key_mlbam', 'key_fangraphs']].dropna()
-        id_map.columns = ['pitcher', 'IDfg']  # Arsenal uses 'pitcher' column for MLBAM ID
-        id_map['IDfg'] = id_map['IDfg'].astype(int)
-
-        arsenal = arsenal.merge(id_map, on='pitcher', how='left')
-        arsenal = arsenal.rename(columns={'year': 'Season'})
-
-        # Key arsenal features: fastball velo and primary pitch velocities/spin
-        arsenal_cols = ['ff_avg_speed', 'si_avg_speed', 'sl_avg_speed', 'ch_avg_speed',
-                       'ff_avg_spin', 'sl_avg_spin', 'ch_avg_spin']
-        arsenal_cols = [c for c in arsenal_cols if c in arsenal.columns]
-
-        if arsenal_cols:
-            arsenal_subset = arsenal[['IDfg', 'Season'] + arsenal_cols].dropna(subset=['IDfg'])
-            pitching_train = pitching_train.merge(arsenal_subset, on=['IDfg', 'Season'], how='left')
-            print(f"  Merged arsenal data: added {len(arsenal_cols)} columns")
-    except Exception as e:
-        print(f"  Warning: Could not merge arsenal data: {e}")
+    # Arsenal features removed - Stuff+ already captures pitch quality holistically
+    # (velocity, movement, spin efficiency) without introducing velocity bias
+    # See: https://library.fangraphs.com/pitching/stuff-plus/
+    #
+    # Previously merged: ff_avg_speed, si_avg_speed, sl_avg_speed, ch_avg_speed,
+    #                    ff_avg_spin, sl_avg_spin, ch_avg_spin
 
     # Save
     path = os.path.join(PROCESSED_DATA_DIR, 'pitchers_processed.csv')
