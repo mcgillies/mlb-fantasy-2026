@@ -449,8 +449,9 @@ def add_positional_adjustments(
     result["PAR"] = par_values
     result["PAR_Position"] = best_positions
 
-    # Rank by PAR
-    result["PAR_Rank"] = result["PAR"].rank(ascending=False, method="min").astype(int)
+    # Rank by PAR (handle NaN for players without positions)
+    result["PAR_Rank"] = result["PAR"].rank(ascending=False, method="min", na_option='bottom')
+    result["PAR_Rank"] = result["PAR_Rank"].fillna(len(result)).astype(int)
 
     return result
 
@@ -495,8 +496,9 @@ def add_pitcher_adjustments(
     # Calculate PAR
     result["PAR"] = result[points_col] - result["Replacement_Level"]
 
-    # Rank all pitchers together by PAR
-    result["PAR_Rank"] = result["PAR"].rank(ascending=False, method="min").astype(int)
+    # Rank all pitchers together by PAR (handle NaN)
+    result["PAR_Rank"] = result["PAR"].rank(ascending=False, method="min", na_option='bottom')
+    result["PAR_Rank"] = result["PAR_Rank"].fillna(len(result)).astype(int)
 
     return result
 
