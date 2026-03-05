@@ -1,0 +1,19 @@
+format: jb-book
+root: intro
+parts:
+  - caption: Methodology
+    chapters:
+      - file: methodology/01_introduction
+      - file: methodology/02_data_collection
+      - file: methodology/03_feature_engineering
+      - file: methodology/04_model_training
+      - file: methodology/05_par_adjustments
+      - file: methodology/06_2026_predictions
+  - caption: 2026 Picks
+    chapters:
+      - file: picks/overview
+      - file: picks/catchers
+      - file: picks/infielders
+      - file: picks/outfielders
+      - file: picks/starting_pitchers
+      - file: picks/relief_pitchers
