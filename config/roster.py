@@ -16,7 +16,7 @@ ROSTER_SLOTS = {
     "SS": 1,
     "OF": 3,
     "DH": 1,  # UTIL slot - can be filled by any hitter
-    "P": 3,   # Pitcher slots (no SP/RP distinction)
+    "P": 7,   # Pitcher slots (no SP/RP distinction)
     "Bench": 3,
 }
 
@@ -42,4 +42,4 @@ REPLACEMENT_COMPOSITE_SIZE = 5  # average 5 players around replacement threshold
 # Replacement level team adjustment
 # Use (league_size - REPLACEMENT_TEAM_ADJUSTMENT) as effective teams
 # Accounts for multi-position eligibility and bench flexibility
-REPLACEMENT_TEAM_ADJUSTMENT = 3
+REPLACEMENT_TEAM_ADJUSTMENT = 2
