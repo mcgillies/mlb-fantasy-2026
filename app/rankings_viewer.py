@@ -17,6 +17,10 @@ st.set_page_config(
 
 st.title("⚾ MLB Fantasy 2026 Rankings")
 
+st.markdown("""
+**Adjusted** rankings refer to the positionally adjusted rankings using PAR
+""")
+
 # Column rename mapping for display
 COLUMN_RENAMES = {
     "ML_Raw_Rank": "Non-Adjusted ML Rank",
