@@ -4,14 +4,16 @@ From there we move on to training our model. As mentioned previously we use 2015
 
 Preprocessing includes simple z-score scaling along with imputing the mean for missing values (rookie lag features as previously mentioned). 
 
-I stuck with the tree model family for this exercise, as this is what has performed the best for me in past endeavours. Linear regression has also produced strong MAE and R² metrics, very similar to the capabilities of tree models, however that fact that the features are not linearly related makes these model invalid. Originally I tested LightGBM, CatBoost, XGBoost and Random Forest models, tuning for the main hyperparameters such as tree structure and regularization. From this I determined Random Forest would perform the best for both the batter and pitcher models, narrowing down the search space. 
+I stuck with the tree model family for this exercise, as this is what has performed the best for me in past endeavours. Linear regression has also produced strong MAE and R² metrics, very similar to the capabilities of tree models, however the fact that the features are not linearly related makes these models invalid. Originally I tested LightGBM, CatBoost, XGBoost and Random Forest models, tuning for the main hyperparameters such as tree structure and regularization. From this I determined Random Forest would perform the best for both the batter and pitcher models, narrowing down the search space. 
 
 ## Results
 
 ### Batter Model Performance
 Model metrics were as follows:
-Model      MAE     RMSE       R²
-Random Forest 0.092515 0.119008 0.234506
+
+| Model | MAE | RMSE | R² |
+|-------|-----|------|-----|
+| Random Forest | 0.093 | 0.119 | 0.235 |
 
 Indicating the average prediction was ~0.1 fantasy points per AB off. This is a relatively low correlation, but to be expected due to the nature of the problem. 
 
@@ -26,23 +28,25 @@ We see in the scatter of predictions vs actual the model in 2025 that the model 
 
 ### Pitcher Model Performance
 Model metrics were as follows:
-Model      MAE    RMSE       R²
-Random Forest 0.416747 0.53755 0.213103
+
+| Model | MAE | RMSE | R² |
+|-------|-----|------|-----|
+| Random Forest | 0.417 | 0.538 | 0.213 |
 
 The error metrics are larger in magnitude, however the R² indicates relatively similar performance to the batter model. 
 
 The shap plot again:
 ![SHAP Pitchers](../_static/images/pitcher_shap.png)
 
-We see a LARGE contribution from K% - quantitatively it is almost 3x more important than the rest of the features. This follows the strikeout biased ESPN scoring system along with the fact that strikeouts correlate well to dominant pitching in general. Interestingly, the SP/RP feature comes in as the 5th most important, favouring relievers over starters. This follows from the EDA prior, and remember this is predicting fantasy points PER INNING, where relivers shine.
+We see a LARGE contribution from K% - quantitatively it is almost 3x more important than the rest of the features. This follows the strikeout biased ESPN scoring system along with the fact that strikeouts correlate well to dominant pitching in general. Interestingly, the SP/RP feature comes in as the 5th most important, favouring relievers over starters. This follows from the EDA prior, and remember this is predicting fantasy points PER INNING, where relievers shine.
 
-We see similar homogenity in the scatter of 2025 predictions with the extremes being less extreme and a slight bias towards relievers:
+We see similar homogeneity in the scatter of 2025 predictions with the extremes being less extreme and a slight bias towards relievers:
 ![Pitcher Scatter](../_static/images/pitchers_predicted_vs_actual_2025.png)
 
 ## Model Interpretation
 Below I will show two individual SHAP waterfall plots for each model - one that predicts well, and one not so much. This works to give a quick overview of how the model prioritizes features and what archetypes of players it is good/bad at predicting. 
 
-#### Pitchers:
+### Pitchers:
 Good: Gerrit Cole - High strikeout high stuff pitcher
 === Gerrit Cole (2024) ===
 Team: NYY | Role: SP
@@ -62,7 +66,7 @@ Actual W/L/SV/HLD: 8-5, 0 SV, 0 HLD
 
 ![Gerrit Cole 2024](../_static/images/shap_waterfall_Gerrit_Cole_2024.png)
 
-Poor: Emmanuel Clase - Elite at everything EXCEPT strikeouts. Don't gamble on Clase in this years draft though. 
+Poor: Emmanuel Clase - Elite at everything EXCEPT strikeouts. Don't gamble on Clase in this year's draft though. 
 
 === Emmanuel Clase (2024) ===
 Team: CLE | Role: RP
@@ -83,7 +87,7 @@ Actual W/L/SV/HLD: 4-2, 47 SV, 0 HLD
 ![Emmanuel Clase 2024](../_static/images/shap_waterfall_Emmanuel_Clase_2024.png)
 
 
-#### Hitters:
+### Hitters:
 Good: Luis Arraez - the poster boy of ESPN fantasy - extremely low whiff, high contact with minimal power.
 === Luis Arraez (2024) ===
 Team: - - -

@@ -25,4 +25,4 @@ Prediction data thresholds (for 2026):
 - Pitchers: 10 IP minimum
 
 
-Players in their rookie season are dropped from the training set - as lag (prior season) features along with trend features (eg. 2024 xwOBA - 2025 xwOBA) are utilized in the model. 
+Players in their rookie season are dropped from the training set - as lag (prior season) features along with trend features (e.g. 2024 xwOBA - 2025 xwOBA) are utilized in the model. 
