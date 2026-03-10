@@ -1,26 +1,19 @@
 # 2026 Predictions
 
-## From Rate to Total Points
-- ML model predicts rate (Fpoints/PA or Fpoints/IP)
-- External projections provide playing time (PA, IP)
-- Total = Rate × Playing Time
+Now we are ready to compile our 2026 predictions using the defined models and PAR adjustment with the 2025 metrics.
 
-## Incorporating External Projections
-- Steamer, BatX, OOPSY systems
-- Averaging across projection systems
-- W/L/SV/HLD for pitchers (team-dependent outcomes)
+## Download Rankings
 
-## Handling Rookies & Prospects
-- Players without ML training data
-- Percentile mapping to align distributions
-- Why adjustment is necessary
+- [Master Rankings (CSV)](https://github.com/YOUR_USERNAME/mlb-fantasy-2026/blob/main/predictions/master_rankings_2026.csv) - All players with ML and projection-based rankings
+- [Interactive Rankings Viewer](https://mlb-fantasy-2026.streamlit.app) - Streamlit app to explore and filter rankings
 
-## Final Rankings
-- ML Raw Rank (by projected fantasy points)
-- ML PAR Rank (positional scarcity adjusted)
-- Comparison to external projection rankings
-- Comparison to ESPN ADP
+## Notes
 
-## Validation
-- Distribution comparison plots
-- Sanity checks on top/bottom rankings
+I have also compiled aggregate rankings from the following FanGraphs projections to supplement my rankings:
+- The Bat X
+- OOPSY
+- Steamer
+
+These are also used as imputation for players without any previous MLB data (e.g. Kazuma Okamoto, Roki Sasaki).
+
+I also have imported the ESPN top 300 ranks to compare. These only go to rank 300, so any player not present (ranked below 300) has also been assigned rank 300 as I cannot confirm their exact rankings easily. ESPN API could use some work. 
