@@ -37,3 +37,8 @@ mlb-book/_build/
 
 # book static
 book/_static/
+
+# book build + images + logs
+book/_build/
+book/_static/images/
+book/_static/logs/
