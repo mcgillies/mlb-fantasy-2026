@@ -1,1 +1,0 @@
-# Infielders\n\nComing soon.

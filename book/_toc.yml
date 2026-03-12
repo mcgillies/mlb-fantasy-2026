@@ -11,9 +11,12 @@ parts:
       - file: methodology/06_2026_predictions
   - caption: 2026 Picks
     chapters:
-      - file: picks/overview
+      - file: picks/picks_intro
       - file: picks/catchers
-      - file: picks/infielders
+      - file: picks/first_basemen
+      - file: picks/second_basemen
+      - file: picks/third_basemen
+      - file: picks/shortstops
       - file: picks/outfielders
       - file: picks/starting_pitchers
       - file: picks/relief_pitchers
