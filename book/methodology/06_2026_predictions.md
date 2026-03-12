@@ -17,3 +17,7 @@ I have also compiled aggregate rankings from the following FanGraphs projections
 These are also used as imputation for players without any previous MLB data (e.g. Kazuma Okamoto, Roki Sasaki).
 
 I also have imported the ESPN top 300 ranks to compare. These only go to rank 300, so any player not present (ranked below 300) has also been assigned rank 300 as I cannot confirm their exact rankings easily. ESPN API could use some work. 
+
+
+To view the most recent rankings please check out this app - you can filter/sort as desired:
+[text](https://mgfantasyranks2026.streamlit.app/)
