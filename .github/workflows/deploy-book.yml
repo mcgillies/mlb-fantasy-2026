@@ -28,7 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install jupyter-book sphinx-book-theme myst-parser
+          pip install "jupyter-book<2"
 
       - name: Build the book
         run: |
