@@ -35,10 +35,5 @@ Thumbs.db
 # Jupyter Book build
 mlb-book/_build/
 
-# book static
-book/_static/
-
-# book build + images + logs
+# Jupyter Book build output (not source)
 book/_build/
-book/_static/images/
-book/_static/logs/
