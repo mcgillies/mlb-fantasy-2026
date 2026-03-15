@@ -1,5 +1,11 @@
 # MLB Fantasy 2026
 
+[![Deploy Jupyter Book](https://github.com/mcgillies/mlb-fantasy-2026/actions/workflows/deploy-book.yml/badge.svg)](https://github.com/mcgillies/mlb-fantasy-2026/actions/workflows/deploy-book.yml)
+
+**[Read the Write-Up](https://mcgillies.github.io/mlb-fantasy-2026/)** | **[Interactive Rankings App](https://mgfantasyranks2026.streamlit.app/)**
+
+---
+
 Predicting 2026 fantasy baseball points using machine learning on advanced Statcast metrics.
 
 ## Approach
