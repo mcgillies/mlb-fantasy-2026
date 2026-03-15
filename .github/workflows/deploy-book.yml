@@ -28,11 +28,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install jupyter-book
+          pip install jupyter-book sphinx-book-theme myst-parser
 
       - name: Build the book
         run: |
-          jupyter-book build book/
+          jupyter-book build book/ --verbose
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
