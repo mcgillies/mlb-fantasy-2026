@@ -14,7 +14,7 @@ I have also compiled aggregate rankings from the following FanGraphs projections
 - OOPSY
 - Steamer
 
-These are also used as imputation for players without any previous MLB data (e.g. Kazuma Okamoto, Roki Sasaki).
+These are also used as imputation for players without any previous MLB data (e.g. Kazuma Okamoto, Tatsuya Imai).
 
 I also have imported the ESPN top 300 ranks to compare. These only go to rank 300, so any player not present (ranked below 300) has also been assigned rank 300 as I cannot confirm their exact rankings easily. ESPN API could use some work. 
 

@@ -9,6 +9,9 @@ parts:
       - file: methodology/04_model_training
       - file: methodology/05_par_adjustments
       - file: methodology/06_2026_predictions
+  - caption: Aside - Ohtani Handling
+    chapters:
+      - file: methodology/07_ohtani_adjustment
   - caption: 2026 Picks
     chapters:
       - file: picks/picks_intro
