@@ -15,7 +15,7 @@
       "meca": false,
       "cff": false,
       "site": false,
-      "html": true,
+      "html": false,
       "all": false,
       "doiBib": false,
       "watch": false,
