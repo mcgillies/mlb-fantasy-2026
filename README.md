@@ -2,7 +2,7 @@
 
 [![Deploy Jupyter Book](https://github.com/mcgillies/mlb-fantasy-2026/actions/workflows/deploy-book.yml/badge.svg)](https://github.com/mcgillies/mlb-fantasy-2026/actions/workflows/deploy-book.yml)
 
-**[Read the Write-Up](https://mcgillies.github.io/mlb-fantasy-2026/)** | **[Interactive Rankings App](https://mgfantasyranks2026.streamlit.app/)**
+**[Read the Write-Up](https://mcgillies.github.io/mlb-fantasy-2026/intro.html)** | **[Interactive Rankings App](https://mgfantasyranks2026.streamlit.app/)**
 
 ---
 
