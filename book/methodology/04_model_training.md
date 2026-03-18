@@ -20,7 +20,10 @@ Indicating the average prediction was ~0.1 fantasy points per AB off. This is a 
 Below is the SHAP plot for the entire model:
 ![SHAP Batters](../_static/images/batter_shap.png)
 
-We see similar features at the top as identified in the EDA - xBA, xwOBA, and K% contribute the most. Essentially all of the feature importances follow as expected - ie. higher barrel % improves the model prediction, downward trend in xwOBA decreases the model prediction. The one I found somewhat interesting was the positive correlation between Pull% and fantasy points. Maybe the idea of "using the whole field" isn't optimal?
+We see similar features at the top as identified in the EDA - xBA, xwOBA, and K% contribute the most. Essentially all of the base feature importances follow as expected - ie. higher barrel % improves the model prediction, downward lower xwOBA decreases the model prediction. The one I found somewhat interesting was the positive correlation between Pull% and fantasy points. Maybe the idea of "using the whole field" isn't optimal?
+
+However easily the most suprising part of this is that the "trend" features actually work in reverse of what you would expect. Again these are calculated as year N - year (N-1), so for 2025 prediction it would be 2024 - 2023. But smaller values of the xwOBA trend feature actually INCREASE the model prediction. This is a surprise, one that likely warrants further investigation if I had the time. The takeaway here is that the model has found that regression to the mean is more likely than continuing on the path of a trend. 
+
 
 We see in the scatter of predictions vs actual the model in 2025 that the model is conservative on the tails - really bad players are given some grace while the elite of the elite are grouped in with the mortals. 
 ![Batter Scatter](../_static/images/batters_predicted_vs_actual_2025.png)
@@ -39,6 +42,8 @@ The shap plot again:
 ![SHAP Pitchers](../_static/images/pitcher_shap.png)
 
 We see a LARGE contribution from K% - quantitatively it is almost 3x more important than the rest of the features. This follows the strikeout biased ESPN scoring system along with the fact that strikeouts correlate well to dominant pitching in general. Interestingly, the SP/RP feature comes in as the 5th most important, favouring relievers over starters. This follows from the EDA prior, and remember this is predicting fantasy points PER INNING, where relievers shine.
+
+Again the trend features follow the regression to the mean path opposed to following the trend. Very interesting findings. 
 
 We see similar homogeneity in the scatter of 2025 predictions with the extremes being less extreme and a slight bias towards relievers:
 ![Pitcher Scatter](../_static/images/pitchers_predicted_vs_actual_2025.png)
