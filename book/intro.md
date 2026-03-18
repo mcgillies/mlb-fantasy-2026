@@ -1,6 +1,6 @@
 # 2026 MLB Fantasy Projections
 
-**[Interactive Rankings App](https://mgfantasyranks2026.streamlit.app/)**
+**[Interactive Rankings App](https://mgfantasyranks2026.streamlit.app/)** | **[Skip to 2026 Picks](picks/picks_intro.md)**
 
 A machine learning approach to fantasy baseball player valuation.
 
