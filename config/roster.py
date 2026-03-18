@@ -43,3 +43,7 @@ REPLACEMENT_COMPOSITE_SIZE = 5  # average 5 players around replacement threshold
 # Use (league_size - REPLACEMENT_TEAM_ADJUSTMENT) as effective teams
 # Accounts for multi-position eligibility and bench flexibility
 REPLACEMENT_TEAM_ADJUSTMENT = 2
+
+# Pitcher roster composition for PAR calculation
+# Assumes this many RP slots per team (remaining P slots are SP)
+RP_PER_TEAM = 2
