@@ -19,7 +19,7 @@ st.title("⚾ MLB Fantasy 2026 Rankings")
 
 st.markdown("""
 **Adjusted** rankings refer to the positionally adjusted rankings using PAR. 
-            Note the reliever rankings for Fangraphs are a bit skewed positively. 
+            Note: the reliever rankings for Fangraphs are a bit skewed positively. 
 """)
 
 # Column rename mapping for display
