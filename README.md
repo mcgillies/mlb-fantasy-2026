@@ -6,56 +6,85 @@
 
 ---
 
-Predicting 2026 fantasy baseball points using machine learning on advanced Statcast metrics.
+Machine learning-based fantasy baseball projections using advanced Statcast metrics.
 
-## Approach
+## Customizing Scoring
 
-- Collect historical stats (2015-2025) and advanced metrics via **pybaseball**
-- Train separate **batter** and **pitcher** gradient boosting models on rate stats (Fpoints/PA, Fpoints/IP)
-- Scale predictions to totals using external PA/IP projections
-- Explain predictions using **SHAP** values
-- Interactive **Streamlit** app for exploring individual player predictions
+All scoring rules are configurable in the `config/` folder. Modify these files to match your league settings, then re-run the workflow.
 
-## Scoring (ESPN Points League)
+### `config/scoring.py` - Fantasy Point Values
 
-**Batters:** 1/TB, 1/R, 1/RBI, 1/BB, 1/SB, -1/K
+**Batter Stats:**
+- `TB` - Total Bases
+- `R` - Runs
+- `RBI` - Runs Batted In
+- `BB` - Walks
+- `SB` - Stolen Bases
+- `K` - Strikeouts
 
-**Pitchers:** 3/IP, 1/K, -1/BB, -1/H, -2/ER, 2/W, -2/L, 2/Hold, 5/Save
+**Pitcher Stats (Skill-Based):**
+- `IP` - Innings Pitched
+- `K` - Strikeouts
+- `BB` - Walks
+- `H` - Hits
+- `ER` - Earned Runs
 
-## Project Structure
+**Pitcher Stats (Team-Dependent):**
+- `W` - Wins
+- `L` - Losses
+- `SV` - Saves
+- `HLD` - Holds
 
-```
-mlb-fantasy-2026/
-├── config/              # Scoring rules and project settings
-├── data/
-│   ├── raw/             # Raw data from pybaseball
-│   ├── processed/       # Cleaned, merged datasets
-│   ├── projections/     # External PA/IP projections
-│   └── cache/           # pybaseball cache
-├── src/
-│   ├── data/            # Collection, processing, fantasy points, features
-│   ├── models/          # Training, prediction, evaluation
-│   ├── utils/           # Name matching, imputation
-│   └── viz/             # Plots and SHAP visualizations
-├── notebooks/           # Step-by-step workflow notebooks
-├── models/              # Saved model artifacts
-├── predictions/         # Output rankings
-├── app/                 # Streamlit prediction app
-└── mlb-book/            # Jupyter Book write-up
-```
+### `config/roster.py` - League Settings
 
-## Setup
+- `LEAGUE_SIZE` - Number of teams
+- `ROSTER_SLOTS` - Position slots per team (C, 1B, 2B, 3B, SS, OF, DH, P)
+- `RP_PER_TEAM` - Assumed RP slots for PAR calculation
 
-```sh
+### `config/settings.py` - Data Settings
+
+- `TRAIN_START_YEAR` / `TRAIN_END_YEAR` - Historical data range
+- `MIN_PA_BATTER` / `MIN_IP_PITCHER` - Minimum thresholds for training data
+- `MIN_PA_PREDICT` / `MIN_IP_PREDICT` - Minimum thresholds for prediction candidates
+
+## Environment Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/mcgillies/mlb-fantasy-2026.git
+cd mlb-fantasy-2026
+
+# Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-## Usage
+## Running the Workflow
 
-1. Run notebooks in order (`notebooks/01_*` through `05_*`)
-2. Or use the source modules directly from `src/`
-3. Launch the app: `streamlit run app/app.py`
+After modifying scoring settings, re-run the notebooks in order:
 
-See [PLAN.md](PLAN.md) for the full project plan and task breakdown.
+```bash
+# Run notebooks sequentially
+jupyter execute notebooks/01_data_collection.ipynb
+jupyter execute notebooks/02_data_processing.ipynb
+jupyter execute notebooks/03_batter_model.ipynb
+jupyter execute notebooks/04_pitcher_model.ipynb
+jupyter execute notebooks/05_2026_predictions.ipynb
+```
+
+Or open each notebook in Jupyter and run manually:
+
+```bash
+jupyter notebook
+```
+
+Then navigate to `notebooks/` and run `01_*` through `05_*` in order.
+
+## Launch the App
+
+```bash
+streamlit run app/app.py
+```
