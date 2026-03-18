@@ -34,3 +34,19 @@ Ashcraft was quietly very good in 69 innings last season, posting a 2.71 ERA and
 
 ![Braxton Ashcraft Shap](../_static/images/shap_Braxton_Ashcraft_2026.png)
 
+## Bust: Yoshinobu Yamamoto (LAD) - ESPN Rank 13, ML Rank 170, Fangraphs Rank 77
+As a Blue Jays fan I absolutely hate this guy, but unbiasedly a rank of 13 is way too high. First off, the Dodgers will never overwork their pitchers in the regular season as they essentially clinch a playoff spot when the season starts. Therefore Yamamoto will get significantly less volume than other pitchers, say 160 IP as a rough maximum. Thats the main driver in this bust label - it is interesting to note Yamamoto's stuff is not elite by any stretch either. Fangraphs gave him a 98 Stuff+ in 2025 and TJStats has his tjstuff+ at 102, both conveying the idea of league average stuff. Credit where credit is due - Yamamoto has absolutely pristine command and that is what makes him great. I just don't see how he performs as essentially a first round pick this season, especially after a long season and playoff run. You could really throw the entire Dodgers rotation, aside from Emmet Sheehan and River Ryan, onto the bust list. 
+
+![Yoshinobu Yamamoto SHAP](../_static/images/)
+
+## Bust: Tyler Glasnow (LAD) - ESPN Rank 92, ML Rank 198, Fangraphs Rank 190
+On one hand we have the "dodger logic" I talked about with Yamamoto - Glasnow will be coddled during the regular season. And that is if he stays healthy, something that is basically impossible given he has only thrown above 100 innings twice in his 10 year career. Not to mention Glasnow showed some very concerning signs last year. He posted a 3.19 ERA, however a 3.76 FIP was his highest since 2020. The strikeouts took a 3% hit from 2024 to 2025, and he lost any ability to generate chase with a 1st percentile chase%. The stuff ticked down in a major way as well, dropping from a 108 overall stuff+ in 2024 to a 98 stuff+ in 2025. For the cherry on top his ability to locate also became lost in 2025, falling from a 100 location+ in 2024 to a 91 location+ in 2025. You would hope he can overcome maybe one or two of these issues in 2026, however there are just way too many data points stacked against Glasnow here. I would trend towards saying do not draft at all. 
+
+![Tyler Glasnow SHAP](../_static/images/shap_Tyler_Glasnow_2026.png)
+
+## Bust: Freddy Peralta (NYM) - ESPN Rank 31, ML Rank 89, Fangraphs Rank 85
+Peralta had the best season of his career in 2025, posting a 2.70 ERA over 176.2 IP. He also continued to show ability to mass bats, racking up whiff and K percentages in the 83rd and 84th percentiles respectively. I just don't see how he maintains that level of run prevention in 2026. Essentially all of his metrics, including a FIP of 3.64 and xFIP of 3.85, mirror his 2022-2023 seasons where he posted ERAs between 3.5 and 4. Peralta registered a career high left on base % of 85.5%, and also recorded his lowest BABIP since 2021 at 0.243. I would expect both of these to regress back to mean in some form in 2026. Peralta also gives up a ton of flyballs, with his FB% of 28.9% being 5% above league average in 2025, which can often lead to bad home run luck. There are a few factors going against Peralta in 2026, making him a fade for me. 
+
+![Freddy Peralta SHAP](../_static/images/shap_Freddy_Peralta_2026.png)
+
+
