@@ -83,7 +83,11 @@ jupyter notebook
 
 Then navigate to `notebooks/` and run `01_*` through `05_*` in order.
 
+The updated rankings will then be stored in the predictions/ folder, with master_rankings_2026.csv containing the full rankings.
+
 ## Launch the App
+
+The app must be ran locally if the scoring settings have been altered:
 
 ```bash
 streamlit run app/app.py
