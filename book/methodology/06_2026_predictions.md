@@ -20,4 +20,4 @@ I also have imported the ESPN top 300 ranks to compare. These only go to rank 30
 
 
 To view the most recent rankings please check out this app - you can filter/sort as desired:
-[text](https://mgfantasyranks2026.streamlit.app/)
+[Streamlit App](https://mgfantasyranks2026.streamlit.app/)

@@ -4,7 +4,7 @@ From there we move on to training our model. As mentioned previously we use 2015
 
 Preprocessing includes simple z-score scaling along with imputing the mean for missing values (rookie lag features as previously mentioned). 
 
-I stuck with the tree model family for this exercise, as this is what has performed the best for me in past endeavours. Linear regression has also produced strong MAE and R² metrics, very similar to the capabilities of tree models, however the fact that the features are not linearly related makes these models invalid. Originally I tested LightGBM, CatBoost, XGBoost and Random Forest models, tuning for the main hyperparameters such as tree structure and regularization. From this I determined Random Forest would perform the best for both the batter and pitcher models, narrowing down the search space. 
+I stuck with the tree model family for this exercise, as this is what has performed the best for me in past endeavors. Linear regression has also produced strong MAE and R² metrics, very similar to the capabilities of tree models, however the fact that the features are not linearly related makes these models invalid. Originally I tested LightGBM, CatBoost, XGBoost and Random Forest models, tuning for the main hyperparameters such as tree structure and regularization. From this I determined Random Forest would perform the best for both the batter and pitcher models, narrowing down the search space. 
 
 ## Results
 
@@ -20,9 +20,9 @@ Indicating the average prediction was ~0.1 fantasy points per AB off. This is a 
 Below is the SHAP plot for the entire model:
 ![SHAP Batters](../_static/images/batter_shap.png)
 
-We see similar features at the top as identified in the EDA - xBA, xwOBA, and K% contribute the most. Essentially all of the base feature importances follow as expected - ie. higher barrel % improves the model prediction, downward lower xwOBA decreases the model prediction. The one I found somewhat interesting was the positive correlation between Pull% and fantasy points. Maybe the idea of "using the whole field" isn't optimal?
+We see similar features at the top as identified in the EDA - xBA, xwOBA, and K% contribute the most. Essentially all of the base feature importances follow as expected - ie. higher barrel % improves the model prediction, lower xwOBA decreases the model prediction. The one I found somewhat interesting was the positive correlation between Pull% and fantasy points. Maybe the idea of "using the whole field" isn't optimal?
 
-However easily the most suprising part of this is that the "trend" features actually work in reverse of what you would expect. Again these are calculated as year N - year (N-1), so for 2025 prediction it would be 2024 - 2023. But smaller values of the xwOBA trend feature actually INCREASE the model prediction. This is a surprise, one that likely warrants further investigation if I had the time. The takeaway here is that the model has found that regression to the mean is more likely than continuing on the path of a trend. 
+However easily the most surprising part of this is that the "trend" features actually work in reverse of what you would expect. Again these are calculated as year N - year (N-1), so for 2025 prediction it would be 2024 - 2023. But smaller values of the xwOBA trend feature actually INCREASE the model prediction. This is a surprise, one that likely warrants further investigation if I had the time. The takeaway here is that the model has found that regression to the mean is more likely than continuing on the path of a trend. 
 
 
 We see in the scatter of predictions vs actual the model in 2025 that the model is conservative on the tails - really bad players are given some grace while the elite of the elite are grouped in with the mortals. 
