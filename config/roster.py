@@ -46,4 +46,4 @@ REPLACEMENT_TEAM_ADJUSTMENT = 2
 
 # Pitcher roster composition for PAR calculation
 # Assumes this many RP slots per team (remaining P slots are SP)
-RP_PER_TEAM = 2
+RP_PER_TEAM = 1
