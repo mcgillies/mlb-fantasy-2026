@@ -2,29 +2,29 @@
 
 Time for the most fun position... starting pitchers will win (or lose) your league. 
 
-## Upper Tier: Cole Ragans (KCR) - ESPN Rank 37, ML Rank 6, Fangraphs Rank 36
+## Upper Tier: Cole Ragans (KCR) - ESPN Rank 45, ML Rank 6, Fangraphs Rank 36
 
 From the surface it was a rough 2025 for Ragans - a rotator cuff strain limited him to only 61.2 IP in 2025, and he posted a 4.67 ERA in those innings. However, he posted an insane 38.1 K% in those innings, second in the league to only Mason Miller (min 50 IP). This was reflected in his 2.50 FIP and 2.45 xFIP, metrics that attempt to boil a pitchers results down to Ks, BBs, and HRs, far more predictive than any ERA type statistic. The stuff is there - Ragans' Stuff+ on Fangraphs was 109 in 2025 and 110 in 2024, with all of his pitches grading out as above average besides a hardly used cutter. The changeup is his best secondary pitch, with an abnormally high 11.5 IVB, meaning it drops much less than expected. This makes it very hard for hitters to discriminate from his fastball, even with a 10 mph difference between the pitches. There are some questions about the workload Ragans will receive after such a shortened 2025, however he did throw 186.1 IP in 2024, and I see the Royals being competitive enough to need him. This is a guy I would be happy to take in the late second/early third round at least. 
 
 ![Cole Ragans SHAP](../_static/images/shap_Cole_Ragans_2026.png)
 
-## Upper Tier: Dylan Cease (TOR) - ESPN Rank 53, ML Rank 12, Fangraphs Rank 27
+## Upper Tier: Dylan Cease (TOR) - ESPN Rank 48, ML Rank 12, Fangraphs Rank 27
 Cease follows a similar mold to Ragans - a guy who misses a ton of bats but got hit with some poor batted ball luck last season. Cease posted a 4.55 ERA in 2025, yet his identical 3.56 FIP and xFIP show he was better than it appeared. Cease has always been a very "vertical" pitcher in terms of his arsenal, meaning he does not have any pitches with a ton of horizontal movement such as a sinker or sweeper. 83% of his pitches last year were either his four-seamer or slider, and although both grade out very well in terms of Stuff+, this led to some issues versus left-handed hitters. In his career Cease has posted a 4.18 FIP versus lefties versus a 3.18 FIP versus righties. If Cease could develop an offspeed pitch to mitigate lefties, or even further hone in his knuckle-curve, this could be a great year for him. I'll note he has also been toying with a new sinker this spring, however it has not graded out well, at a 92 TJStuff+ (shoutout TJStats). Cease is also remarkably healthy, pitching at least 165 IP in each of the last 5 seasons, making him a very nice high floor high ceiling pick (knock on wood). 
 
 ![Dylan Cease SHAP](../_static/images/shap_Dylan_Cease_2026.png)
 
-## Upper Tier: Sonny Gray (BOS) - ESPN Rank 61, ML Rank 56, Fangraphs Rank 62
+## Upper Tier: Sonny Gray (BOS) - ESPN Rank 63, ML Rank 56, Fangraphs Rank 62
 You could make the same ERA-FIP argument with Gray here, as his 3.39 FIP in 2025 was nearly a run below his ERA of 4.28. That is not the angle I'm going to take here however. Gray is awesome at spinning the baseball - his sweeper graded out at a 123 Stuff+ from fangraphs last season, the only of his 6 pitches that graded out above average. This can also been seen in the Statcast Run Value of +7 for the pitch. His curveball also provided +5 run value in 2025, further proving the hypothesis about his spin. Being traded to the Red Sox here is very important - they love maximizing usage of non-fastballs, something which could play into Sonny Gray's hand perfectly. Maximizing that sweeper usage could greatly boost his numbers in 2026, and its not like Gray performed poorly at all in 2025. His 79th percentile K% of 26.7 and 93rd percentile BB% of 5% both provide some wiggle room to work with in 2026. Don't be surprised if Sonny Gray posts a sub 3.50 ERA with great peripherals in 2026. 
 ![Sonny Gray SHAP](../_static/images/shap_Sonny_Gray_2026.png)
 
 
-## Sleeper: Cody Ponce (TOR) - ESPN Rank 233, ML Rank 137, Fangraphs Rank 165
+## Sleeper: Cody Ponce (TOR) - ESPN Rank 242, ML Rank 137, Fangraphs Rank 165
 Note that the ML Rank is derived from fangraphs projections here, since Ponce did not pitch in the MLB in 2025. Ponce had a career resurgence in 2025, winning the KBO MVP while posting a 1.89 ERA in 180 IP while striking out a demonic 36.2% of hitters. Will he replicate those numbers in the MLB? Absolutely not. But I think Ponce can be an above average MLB starter this season. The stuff looks good in spring training; his fastball sits around 96 MPH, receiving a 104 TJStuff+ grade. He also throws a kick-change that was essential to his success in Korea, pairing that with a cutter, slider and curveball, all graded around average. Although the Blue Jays rotation currently has 7 or even 8 capable starting pitchers, I feel that Ponce will be relied on quite heavily for volume. Shane Bieber is hurt to begin the season, Jose Berrios is having elbow issues, Trey Yesavage will most definitely have his innings monitored and Max Scherzer is old. ESPN is underranking Ponce due to the unfamiliarity, so take advantage of that. 
 
 No SHAP 
 
 
-## Sleeper: Reid Detmers (LAA) - ESPN Rank > 300, ML Rank 43, Fangraphs Rank 192
+## Sleeper: Reid Detmers (LAA) - ESPN Rank 277, ML Rank 43, Fangraphs Rank 192
 First off - don't take Detmers in the 4th round. His projections are inflated due to having reliever stats from 2025 projected over starters innings in 2026. After flailing as a starter for the first 4 seasons of his career, Detmers thrived as a reliever in 2025 posting a 3.96 ERA and a 3.12 FIP. The stuff ticked up, reaching a 112 Stuff+ overall. This is likely to drop in 2026, as most of the gains came from a 2 mph gain in his fastball, however I am more intrigued by his 112 Location+, a Fangraphs metric designed to evaluate the ability of a pitcher to locate his pitches. The whiffs and Ks have always been there for Detmers, posting an above average K% in 2023 and 2024 as a starter, however he struggled with hard contact. Detmers has added a splitter to his repertoire of a fastball, slider and curve, and hopefully this along with his newfound command can springboard him into a solid 2026 season. Worth a late round flier to see how he starts the season. 
 
 ![Reid Detmers SHAP](../_static/images/shap_Reid_Detmers_2026.png)
@@ -34,17 +34,17 @@ Ashcraft was quietly very good in 69 innings last season, posting a 2.71 ERA and
 
 ![Braxton Ashcraft SHAP](../_static/images/shap_Braxton_Ashcraft_2026.png)
 
-## Bust: Yoshinobu Yamamoto (LAD) - ESPN Rank 13, ML Rank 170, Fangraphs Rank 77
+## Bust: Yoshinobu Yamamoto (LAD) - ESPN Rank 19, ML Rank 170, Fangraphs Rank 77
 As a Blue Jays fan I absolutely hate this guy, but objectively a rank of 13 is way too high. First off, the Dodgers will never overwork their pitchers in the regular season as they essentially clinch a playoff spot when the season starts. Therefore Yamamoto will get significantly less volume than other pitchers, say 160 IP as a rough maximum. Thats the main driver in this bust label - it is interesting to note Yamamoto's stuff is not elite by any stretch either. Fangraphs gave him a 98 Stuff+ in 2025 and TJStats has his tjstuff+ at 102, both conveying the idea of league average stuff. Credit where credit is due - Yamamoto has absolutely pristine command and that is what makes him great. I just don't see how he performs as essentially a first round pick this season, especially after a long season and playoff run. You could really throw the entire Dodgers rotation, aside from Emmet Sheehan and River Ryan, onto the bust list. 
 
 ![Yoshinobu Yamamoto SHAP](../_static/images/shap_Yoshinobu_Yamamoto_2026.png)
 
-## Bust: Tyler Glasnow (LAD) - ESPN Rank 92, ML Rank 198, Fangraphs Rank 190
+## Bust: Tyler Glasnow (LAD) - ESPN Rank 131, ML Rank 198, Fangraphs Rank 190
 On one hand we have the "dodger logic" I talked about with Yamamoto - Glasnow will be coddled during the regular season. And that is if he stays healthy, something that is basically impossible given he has only thrown above 100 innings twice in his 10 year career. Not to mention Glasnow showed some very concerning signs last year. He posted a 3.19 ERA, however a 3.76 FIP was his highest since 2020. The strikeouts took a 3% hit from 2024 to 2025, and he lost any ability to generate chase with a 1st percentile chase%. The stuff ticked down in a major way as well, dropping from a 108 overall stuff+ in 2024 to a 98 stuff+ in 2025. For the cherry on top his ability to locate also became lost in 2025, falling from a 100 location+ in 2024 to a 91 location+ in 2025. You would hope he can overcome maybe one or two of these issues in 2026, however there are just way too many data points stacked against Glasnow here. I would trend towards saying do not draft at all. 
 
 ![Tyler Glasnow SHAP](../_static/images/shap_Tyler_Glasnow_2026.png)
 
-## Bust: Freddy Peralta (NYM) - ESPN Rank 31, ML Rank 89, Fangraphs Rank 85
+## Bust: Freddy Peralta (NYM) - ESPN Rank 41, ML Rank 89, Fangraphs Rank 85
 Peralta had the best season of his career in 2025, posting a 2.70 ERA over 176.2 IP. He also continued to show ability to mass bats, racking up whiff and K percentages in the 83rd and 84th percentiles respectively. I just don't see how he maintains that level of run prevention in 2026. Essentially all of his metrics, including a FIP of 3.64 and xFIP of 3.85, mirror his 2022-2023 seasons where he posted ERAs between 3.5 and 4. Peralta registered a career high left on base % of 85.5%, and also recorded his lowest BABIP since 2021 at 0.243. I would expect both of these to regress back to mean in some form in 2026. Peralta also gives up a ton of flyballs, with his FB% of 28.9% being 5% above league average in 2025, which can often lead to bad home run luck. There are a few factors going against Peralta in 2026, making him a fade for me. 
 
 ![Freddy Peralta SHAP](../_static/images/shap_Freddy_Peralta_2026.png)

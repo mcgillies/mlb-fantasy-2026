@@ -18,4 +18,18 @@ Estevez had a great year on the surface in 2025, posting 42 saves to lead all of
 ![Carlos Estevez SHAP](../_static/images/shap_Carlos_Estevez_2026.png)
 
 
+1. Harper (8) - Dutch
+2. Abreu (7) - Kyle H
+3. Acuna (2 + W) - Jaime
+4. Witt (2 + L) - Zac
+5. Arraez (1 + W + 35) - Lucas
+6. Garcia/ (1 + W + 28) - Matt
+7. Suarez/ (1 + W + 13) - Kyle S
+8. Turang (0 + L + 18) - Kyle W
+9. Bregman (0 + L + 14) - Jackson
+10. Smith (-1) - Tav
+11. Schwarber (-2) - Jacob
+12. Judge (-3) - Alex
+
+
 
